@@ -1,7 +1,7 @@
 <div class="container-fluid">
-    <span>&copy; 2023 
+    <span>&copy; 2024 
         <a href="#">
-            The Sots Family
+            The Liaison Office.
         </a>
     </span>
 </div>

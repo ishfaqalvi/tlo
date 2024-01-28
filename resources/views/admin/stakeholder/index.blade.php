@@ -8,7 +8,7 @@
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Stakeholder Managment</span>
+            Home - <span class="fw-normal">Stakeholder Management</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -18,7 +18,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-plus"></i>
                 </span>
-                Create New
+                Add Stakeholder
             </a>
             @endcan
         </div>
