@@ -31,10 +31,10 @@
             <h5 class="mb-0">{{ __('Edit ') }} {{modelTitle}} </h5>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('{{modelRoute}}.update', ${{modelNameLowerCase}}->id) }}" class="validate"   role="form" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('{{modelRoute}}.update', ${{modelNameLowerCase}}->id) }}" class="validate" role="form" enctype="multipart/form-data">
                 @csrf
                 {{ method_field('PATCH') }}
-                 @include('admin.{{modelView}}.form')
+                @include('admin.{{modelView}}.form')
             </form>
         </div>
     </div>

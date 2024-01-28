@@ -1,14 +1,15 @@
-<div class="container-fluid">
+<div class="container-fluid" style="padding:0px !important">
     <div class="d-flex d-lg-none me-2">
         <button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded-pill">
             <i class="ph-list"></i>
         </button>
     </div>
-    <div class="navbar-brand flex-1 flex-lg-0">
-        <a href="index.html" class="d-inline-flex align-items-center">
-            <img src="{{ asset('assets/images/logo.jpg') }}" alt="">
-        </a>
-    </div>
+    <a href="index.html" class="d-inline-flex align-items-center">
+        <img src="{{ asset('assets/images/logo.jpg') }}" alt="" width="253px">
+    </a>
+    <!-- <div class="flex-1 flex-lg-0">
+        
+    </div> -->
     <ul class="nav flex-row">
         <li class="nav-item d-lg-none">
             <a href="#navbar_search" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="collapse">
@@ -112,7 +113,7 @@
             </div>
         </li> -->
     </ul>
-    <ul class="nav flex-row justify-content-end order-1 order-lg-2">
+    <ul class="nav flex-row justify-content-end order-1 order-lg-2 pe-4">
         <!-- <li class="nav-item ms-lg-2">
             <a href="#" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="offcanvas" data-bs-target="#notifications">
                 <i class="ph-bell"></i>

@@ -57,7 +57,7 @@ class {{modelName}}Controller extends Controller
      */
     public function store(Request $request)
     {
-       ${{modelNameLowerCase}} = {{modelName}}::create($request->all());
+        ${{modelNameLowerCase}} = {{modelName}}::create($request->all());
         return redirect()->route('{{modelRoute}}.index')
             ->with('success', '{{modelName}} created successfully.');
     }

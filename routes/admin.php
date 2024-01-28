@@ -11,6 +11,53 @@ Route::get('dashboard', DashboardController::class)->name('dashboard');
 
 /*
 |--------------------------------------------------------------------------
+| Projects Route
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'prefix'     => 'projects',
+    'as'         => 'projects.',
+    'controller' => ProjectController::class
+], function () {
+    Route::get('list',                 'index'  )->name('index'	 );
+    Route::get('create',               'create' )->name('create' );
+    Route::post('store',               'store'  )->name('store'	 );
+    Route::get('edit/{id}',            'edit'   )->name('edit'	 );
+    Route::get('show/{id}',            'show'   )->name('show'	 );
+    Route::patch('update/{project}',   'update' )->name('update' );
+    Route::delete('delete/{id}',       'destroy')->name('destroy');
+    Route::post('stakeholder/store',        'stakeholderStore'  )->name('stakeholder.store'	 );
+    Route::delete('stakeholder/delete/{id}','stakeholderDestroy')->name('stakeholder.destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Stakeholders Route
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'prefix'     => 'stakeholders',
+    'as'         => 'stakeholders.',
+    'controller' => StakeholderController::class
+], function () {
+    Route::get('list',                  'index'  )->name('index'  );
+    Route::get('create',                'create' )->name('create' );
+    Route::post('store',                'store'  )->name('store'  );
+    Route::get('edit/{id}',             'edit'   )->name('edit'	  );
+    Route::get('show/{id}',             'show'   )->name('show'	  );
+    Route::patch('update/{stakeholder}','update' )->name('update' );
+    Route::delete('delete/{id}',        'destroy')->name('destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Config Route
+|--------------------------------------------------------------------------
+*/
+Route::prefix('/catalog')->namespace('\App\Http\Controllers\Admin\Catalog')->group(__DIR__.'/catalog.php');
+
+/*
+|--------------------------------------------------------------------------
 | Role Routes
 |--------------------------------------------------------------------------
 */

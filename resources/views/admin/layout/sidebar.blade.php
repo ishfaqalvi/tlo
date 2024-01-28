@@ -9,6 +9,50 @@
         <span>Dashboard</span>
     </a>
 </li>
+@canany(['projects-list','stakeholders-list'])
+<li class="nav-item-header">
+    <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Project Management</div>
+    <i class="ph-dots-three sidebar-resize-show"></i>
+</li>
+@endcanany
+@can('projects-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('projects*') ? 'active' : ''}}" href="{{ route('projects.index') }}">
+        <i class="ph-folder"></i>
+        <span>Projects</span>
+    </a>
+</li>
+@endcan
+@can('stakeholders-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('stakeholders*') ? 'active' : ''}}" href="{{ route('stakeholders.index') }}">
+        <i class="ph-users-three"></i>
+        <span>Stakeholders</span>
+    </a>
+</li>
+@endcan
+@canany(['categories-list', 'provinces-list'])
+<li class="nav-item-header">
+    <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Catalog Management</div>
+    <i class="ph-dots-three sidebar-resize-show"></i>
+</li>
+@endcanany
+@can('categories-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('categories*') ? 'active' : ''}}" href="{{ route('categories.index') }}">
+        <i class="ph-atom"></i>
+        <span>Categories</span>
+    </a>
+</li>
+@endcan
+@can('provinces-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('provinces*') ? 'active' : ''}}" href="{{ route('provinces.index') }}">
+        <i class="ph-atom"></i>
+        <span>Provinces</span>
+    </a>
+</li>
+@endcan
 @canany(['roles-list', 'users-list'])
 <li class="nav-item-header">
     <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Access Management</div>

@@ -17,7 +17,8 @@
         "owen-it/laravel-auditing": "^13.3",
         "rap2hpoutre/laravel-log-viewer": "^2.3",
         "spatie/image": "^2.2",
-        "spatie/laravel-permission": "^5.8"
+        "spatie/laravel-permission": "^5.8",
+        "wildside/userstamps": "^2.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -36,7 +37,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Libraries/helpers.php"
+            "app/Libraries/helpers.php",
+            "app/Libraries/dropdowns.php"
         ]
     },
     "autoload-dev": {

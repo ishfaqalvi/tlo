@@ -16,6 +16,33 @@ class PermissionSeeder extends Seeder
       public function run()
       {
             $permissions = [ 
+                  'projects-list', 
+                  'projects-view', 
+                  'projects-create', 
+                  'projects-edit', 
+                  'projects-delete',
+                  'projectStakeholder-list',
+                  'projectStakeholder-create',
+                  'projectStakeholder-delete',
+
+                  'stakeholders-list', 
+                  'stakeholders-view', 
+                  'stakeholders-create', 
+                  'stakeholders-edit', 
+                  'stakeholders-delete',
+
+                  'categories-list', 
+                  'categories-view', 
+                  'categories-create', 
+                  'categories-edit', 
+                  'categories-delete',
+
+                  'provinces-list', 
+                  'provinces-view', 
+                  'provinces-create', 
+                  'provinces-edit', 
+                  'provinces-delete',
+
                   'roles-list', 
                   'roles-view', 
                   'roles-create', 
