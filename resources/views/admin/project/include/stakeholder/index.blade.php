@@ -11,7 +11,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-plus"></i>
                 </span>
-                Add New
+                Add Stakeholder
             </a>
             @endcan
         </div>
@@ -33,11 +33,11 @@
         <tr>
             <td>{{ ++$key }}</td>
 			<td>{{ $row->stakeholder->name }}</td>
-			<td>{{ $row->stakeholder->role }}</td>
+			<td>{{ $row->stakeholder->stakeholderRole->title }}</td>
 			<td>{{ $row->stakeholder->type }}</td>
 			<td>{{ $row->stakeholder->province->title }}</td>
             <td class="text-center">
-            	@canany(['projects-view', 'projects-edit', 'projects-delete'])
+            	@canany(['projectStakeholder-delete'])
 				<div class="d-inline-flex">
 				    <div class="dropdown">
 				        <a href="#" class="text-body" data-bs-toggle="dropdown">
@@ -47,7 +47,7 @@
 				            <form action="{{ route('projects.stakeholder.destroy',$row->id) }}" method="POST">
 				                @csrf
 				                @method('DELETE')
-				                @can('projects-delete')
+				                @can('projectStakeholder-delete')
 				                    <button type="submit" class="dropdown-item sa-confirm">
 				                        <i class="ph-trash me-2"></i>{{ __('Delete') }}
 				                    </button>
@@ -62,4 +62,30 @@
     @endforeach
     </tbody>
 </table>
-@include('admin.project.include.stakeholder.create')
+<div id="addStakeholder" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="{{ route('projects.stakeholder.store') }}" class="stakeholder" role="form" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ __('Add Project Stakeholder') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        {{ Form::hidden('project_id', $project->id) }}
+                        <div class="form-group">
+                            {{ Form::label('stakeholder') }}
+                            {{ Form::select('stakeholder_id', stakeholders(), null, ['class' => 'form-control select' . ($errors->has('stakeholder_id') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required','id'=>'stakeholder_id']) }}
+                            {!! $errors->first('stakeholder_id', '<div class="invalid-feedback">:message</div>') !!}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

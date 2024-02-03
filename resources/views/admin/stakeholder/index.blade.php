@@ -50,7 +50,7 @@
                 <tr>
                     <td>{{ ++$key }}</td>
 					<td>{{ $stakeholder->name }}</td>
-					<td>{{ $stakeholder->role }}</td>
+					<td>{{ $stakeholder->stakeholderRole->title }}</td>
 					<td>{{ $stakeholder->type }}</td>
 					<td>{{ $stakeholder->province->title }}</td>
 					<td>{{ $stakeholder->creator->name }}</td>

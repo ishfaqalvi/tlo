@@ -38,7 +38,7 @@ class Stakeholder extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['name','role','type','province_id'];
+    protected $fillable = ['name','stakeholder_role_id','type','province_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -46,5 +46,13 @@ class Stakeholder extends Model implements Auditable
     public function province()
     {
         return $this->hasOne('App\Models\Catalog\Province', 'id', 'province_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function stakeholderRole()
+    {
+        return $this->hasOne('App\Models\Catalog\StakeholderRole', 'id', 'stakeholder_role_id');
     }
 }

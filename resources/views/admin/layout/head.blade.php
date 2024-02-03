@@ -38,10 +38,6 @@
 <script>
     var NotyDemo = function() {
         const _componentNoty = function() {
-            if (typeof Noty == 'undefined') {
-                console.warn('Warning - noty.min.js is not loaded.');
-                return;
-            }
             Noty.overrideDefaults({
                 theme: 'limitless',
                 layout: 'topRight',

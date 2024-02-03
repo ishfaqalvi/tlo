@@ -1,19 +1,19 @@
 @extends('admin.layout.app')
 
 @section('title')
-{{ __('Create') }} Project Stakeholder
+{{ __('Create') }} Activity Progress
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Project Stakeholder Management</span>
+            Home - <span class="fw-normal">Activity Progress Management</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
         <div class="d-sm-flex align-items-center mb-3 mb-lg-0 ms-lg-3">
-            <a href="{{ route('project-stakeholders.index') }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
+            <a href="{{ route('activity-progresses.index') }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-arrow-circle-left"></i>
                 </span>
@@ -28,12 +28,12 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">{{ __('Create') }} Project Stakeholder</h5>
+            <h5 class="mb-0">{{ __('Create') }} Activity Progress</h5>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('project-stakeholders.store') }}" class="validate" role="form" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('activity-progresses.store') }}" class="validate" role="form" enctype="multipart/form-data">
                 @csrf
-                @include('admin.project-stakeholder.form')
+                @include('admin.catalog.activity-progress.form')
             </form>
         </div>
     </div>
@@ -56,9 +56,6 @@
                 $(element).removeClass(errorClass);
                 $(element).removeClass('is-invalid');
                 $(element).addClass('is-valid');
-            },
-            success: function(label) {
-                label.addClass('validation-valid-label').text('Success.');
             },
             errorPlacement: function(error, element) {
                 if (element.hasClass('select2-hidden-accessible')) {

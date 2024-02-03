@@ -31,7 +31,15 @@
     </a>
 </li>
 @endcan
-@canany(['categories-list', 'provinces-list'])
+@can('sites-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('sites*') ? 'active' : ''}}" href="{{ route('sites.index') }}">
+        <i class="ph-globe"></i>
+        <span>Sites</span>
+    </a>
+</li>
+@endcan
+@canany(['categories-list', 'provinces-list','stakeholderRoles-list','siteTypes-list','activityProgress-list'])
 <li class="nav-item-header">
     <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Catalog Management</div>
     <i class="ph-dots-three sidebar-resize-show"></i>
@@ -40,7 +48,7 @@
 @can('categories-list')
 <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('categories*') ? 'active' : ''}}" href="{{ route('categories.index') }}">
-        <i class="ph-atom"></i>
+        <i class="ph-list-dashes"></i>
         <span>Categories</span>
     </a>
 </li>
@@ -48,8 +56,32 @@
 @can('provinces-list')
 <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('provinces*') ? 'active' : ''}}" href="{{ route('provinces.index') }}">
-        <i class="ph-atom"></i>
+        <i class="ph-list-dashes"></i>
         <span>Provinces</span>
+    </a>
+</li>
+@endcan
+@can('stakeholderRoles-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('stakeholder-roles*') ? 'active' : ''}}" href="{{ route('stakeholder-roles.index') }}">
+        <i class="ph-list-dashes"></i>
+        <span>Stakeholder Roles</span>
+    </a>
+</li>
+@endcan
+@can('siteTypes-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('site-types*') ? 'active' : ''}}" href="{{ route('site-types.index') }}">
+        <i class="ph-list-dashes"></i>
+        <span>Site Types</span>
+    </a>
+</li>
+@endcan
+@can('activityProgress-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('activity-progresses*') ? 'active' : ''}}" href="{{ route('activity-progresses.index') }}">
+        <i class="ph-list-dashes"></i>
+        <span>Activity Progress</span>
     </a>
 </li>
 @endcan

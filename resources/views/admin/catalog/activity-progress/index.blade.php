@@ -1,24 +1,24 @@
 @extends('admin.layout.app')
 
 @section('title')
-    Project Stakeholder
+    Activity Progress
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Project Stakeholder Management</span>
+            Home - <span class="fw-normal">Activity Progress Management</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
         <div class="d-sm-flex align-items-center mb-3 mb-lg-0 ms-lg-3">
-            @can('project-stakeholders-create')
-            <a href="{{ route('project-stakeholders.create') }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
+            @can('activityProgress-create')
+            <a href="{{ route('activity-progresses.create') }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-plus"></i>
                 </span>
-                Create New
+                Add Activity Progress
             </a>
             @endcan
         </div>
@@ -30,28 +30,26 @@
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">Project Stakeholder</h5>
+            <h5 class="mb-0">Activity Progress</h5>
         </div>
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
                     <th>No</th>
-                    
-										<th>Project Id</th>
-										<th>Stakeholder Id</th>
-
+					<th>Title</th>
+					<th>Created By</th>
+					<th>Updated By</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach ($projectStakeholders as $key => $projectStakeholder)
+            @foreach ($activityProgresses as $key => $activityProgress)
                 <tr>
                     <td>{{ ++$key }}</td>
-                    
-											<td>{{ $projectStakeholder->project_id }}</td>
-											<td>{{ $projectStakeholder->stakeholder_id }}</td>
-
-                    <td class="text-center">@include('admin.project-stakeholder.actions')</td>
+					<td>{{ $activityProgress->title }}</td>
+					<td>{{ $activityProgress->creator->name }}</td>
+					<td>{{ $activityProgress->editor->name }}</td>
+                    <td class="text-center">@include('admin.catalog.activity-progress.actions')</td>
                 </tr>
             @endforeach
             </tbody>
@@ -59,36 +57,7 @@
     </div>
 </div>
 @endsection
-@canany(['project-stakeholders-view', 'project-stakeholders-edit', 'project-stakeholders-delete'])
-<div class="d-inline-flex">
-    <div class="dropdown">
-        <a href="#" class="text-body" data-bs-toggle="dropdown">
-            <i class="ph-list"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-end">
-            <form action="{{ route('project-stakeholders.destroy',$projectStakeholder->id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                @can('project-stakeholders-view')
-                    <a href="{{ route('project-stakeholders.show',$projectStakeholder->id) }}" class="dropdown-item">
-                        <i class="ph-eye me-2"></i>{{ __('Show') }}
-                    </a>
-                @endcan
-                @can('project-stakeholders-edit')
-                    <a href="{{ route('project-stakeholders.edit',$projectStakeholder->id) }}" class="dropdown-item">
-                        <i class="ph-note-pencil me-2"></i>{{ __('Edit') }}
-                    </a>
-                @endcan
-                @can('project-stakeholders-delete')
-                    <button type="submit" class="dropdown-item sa-confirm">
-                        <i class="ph-trash me-2"></i>{{ __('Delete') }}
-                    </button>
-                @endcan
-            </form>
-        </div>
-    </div>
-</div>
-@endcanany
+
 @section('script')
 <script>
     $(function () {

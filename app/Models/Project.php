@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
 use Wildside\Userstamps\Userstamps;
+
 /**
  * Class Project
  *
@@ -54,10 +54,10 @@ class Project extends Model implements Auditable
         'start_date',
         'end_date',
         'funding',
-        'location',
         'donnor',
         'partner',
         'description',
+        'province_id',
         'assigned_to',
         'category_id',
         'status'
@@ -96,9 +96,17 @@ class Project extends Model implements Auditable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
+    public function province()
+    {
+        return $this->hasOne('App\Models\Catlog\Province', 'id', 'province_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function category()
     {
-        return $this->hasOne('App\Models\Category', 'id', 'category_id');
+        return $this->hasOne('App\Models\Catlog\Category', 'id', 'category_id');
     }
     
     /**
@@ -114,6 +122,30 @@ class Project extends Model implements Auditable
      */
     public function stakeholders()
     {
-        return $this->hasMany('App\Models\ProjectStakeholder', 'project_id', 'id');
+        return $this->hasMany('App\Models\Project\ProjectStakeholder', 'project_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function phases()
+    {
+        return $this->hasMany('App\Models\Project\ProjectPhase', 'project_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sites()
+    {
+        return $this->hasMany('App\Models\Project\ProjectSite', 'project_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function activities()
+    {
+        return $this->hasMany('App\Models\Project\ProjectActivity', 'project_id', 'id');
     }   
 }

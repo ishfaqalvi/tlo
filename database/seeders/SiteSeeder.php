@@ -1,0 +1,33 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use DB;
+
+class SiteSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('sites')->insert([
+            'site_type_id' => 1,
+            'province_id' => 1,
+            'name' => 'Sample Site',
+            'office' => 'Main Office',
+            'contact_name' => 'John Doe',
+            'contact_number' => '0123456789',
+            'latitude' => '34.0522',
+            'longitude' => '-118.2437',
+            'note' => 'This is a sample note.',
+            'status' => 'Active',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+    }
+}

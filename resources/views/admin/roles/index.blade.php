@@ -16,7 +16,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-plus"></i>
                 </span>
-                Create New
+                Add Role
             </a>
         </div>
     </div>

@@ -59,7 +59,7 @@
                     </div>
                     <div class="col-md-12 d-flex justify-content-end align-items-center mt-3">
                         <button type="submit" class="btn btn-primary ms-3">
-                            Submit <i class="ph-paper-plane-tilt ms-2"></i>
+                            Save <i class="ph-paper-plane-tilt ms-2"></i>
                         </button>
                     </div>
                 </div>
@@ -91,9 +91,6 @@
                 $(element).removeClass(errorClass);
                 $(element).removeClass('is-invalid');
                 $(element).addClass('is-valid');
-            },
-            success: function(label) {
-                label.addClass('validation-valid-label').text('Success.');
             },
             errorPlacement: function(error, element) {
                 if (element.hasClass('select2-hidden-accessible')) {

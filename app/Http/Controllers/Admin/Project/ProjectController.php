@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Project;
 use App\Http\Controllers\Controller;
 
-use App\Models\{Project, ProjectStakeholder};
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 /**
@@ -63,18 +63,6 @@ class ProjectController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function stakeholderStore(Request $request)
-    {
-        $project = ProjectStakeholder::create($request->all());
-        return redirect()->back()->with('success', 'Project Stakeholder added successfully.');
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int $id
@@ -111,8 +99,7 @@ class ProjectController extends Controller
     {
         $project->update($request->all());
 
-        return redirect()->route('projects.index')
-            ->with('success', 'Project updated successfully');
+        return redirect()->back()->with('success', 'Project updated successfully!');
     }
 
     /**
@@ -125,19 +112,6 @@ class ProjectController extends Controller
         $project = Project::find($id)->delete();
 
         return redirect()->route('projects.index')
-            ->with('success', 'Project deleted successfully');
-    }
-
-    /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-    public function stakeholderDestroy($id)
-    {
-        $project = ProjectStakeholder::find($id)->delete();
-
-        return redirect()->back()
-            ->with('success', 'Project Stakeholder deleted successfully.');
+            ->with('success', 'Project deleted successfully!');
     }
 }

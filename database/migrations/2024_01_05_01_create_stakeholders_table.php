@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('stakeholders', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('role',['Partner','Donnar']);
             $table->string('type');
+            $table->foreignId('stakeholder_role_id')->references('id')->on('stakeholder_roles')->cascadeOnDelete();
             $table->foreignId('province_id')->references('id')->on('provinces')->cascadeOnDelete();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();

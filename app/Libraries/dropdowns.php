@@ -1,8 +1,8 @@
 <?php
 
-
-use App\Models\{User,Stakeholder};
-use App\Models\Catalog\{Category,Province};
+use App\Models\Project\ProjectPhase;
+use App\Models\{User,Stakeholder,Site};
+use App\Models\Catalog\{Category,Province,StakeholderRole,SiteType,ActivityProgress};
 
 /**
  * Get listing of a resource.
@@ -29,9 +29,29 @@ function provinces()
  *
  * @return \Illuminate\Http\Response
  */
-function stakeholders()
+function stakeholderRoles()
 {
-    return Stakeholder::pluck('name','id');
+    return StakeholderRole::pluck('title','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function siteTypes()
+{
+    return SiteType::pluck('title','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function activityProgress()
+{
+    return ActivityProgress::pluck('title','id');
 }
 
 /**
@@ -42,4 +62,45 @@ function stakeholders()
 function users()
 {
     return User::pluck('name','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function stakeholders()
+{
+    return Stakeholder::pluck('name','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function sites()
+{
+    return Site::pluck('name','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function projectSites($id)
+{
+    return Site::select('sites.*')->join('project_sites','project_sites.site_id','=','sites.id')
+        ->where('project_sites.project_id',$id)->pluck('name','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function projectPhases($id)
+{
+    return ProjectPhase::whereProjectId($id)->pluck('name','id');
 }

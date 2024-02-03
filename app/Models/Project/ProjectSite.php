@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Project;
 
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 
 /**
- * Class ProjectStakeholder
+ * Class ProjectSite
  *
  * @property $id
  * @property $project_id
- * @property $stakeholder_id
+ * @property $site_id
  * @property $created_at
  * @property $updated_at
  *
  * @property Project $project
- * @property Stakeholder $stakeholder
+ * @property Site $site
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class ProjectStakeholder extends Model implements Auditable
+class ProjectSite extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
 
@@ -30,7 +30,7 @@ class ProjectStakeholder extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['project_id','stakeholder_id'];
+    protected $fillable = ['project_id','site_id'];
 
 
     /**
@@ -44,9 +44,8 @@ class ProjectStakeholder extends Model implements Auditable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function stakeholder()
+    public function site()
     {
-        return $this->hasOne('App\Models\Stakeholder', 'id', 'stakeholder_id');
-    }
-    
+        return $this->hasOne('App\Models\Site', 'id', 'site_id');
+    }  
 }

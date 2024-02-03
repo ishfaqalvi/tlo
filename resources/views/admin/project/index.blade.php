@@ -50,7 +50,15 @@
                 <tr>
                     <td>{{ ++$key }}</td>
 					<td>{{ $project->code }}</td>
-					<td>{{ $project->name }}</td>
+					<td>
+                        @if(auth()->user()->can('projects-edit'))
+                            <a href="{{ route('projects.edit',$project->id) }}">
+                                {{ $project->name }}
+                            </a>
+                        @else
+                            {{ $project->name }}
+                        @endif
+                    </td>
 					<td>{{ date('d M Y',$project->start_date) }}</td>
 					<td>{{ date('d M Y',$project->end_date) }}</td>
 					<td>{{ $project->status }}</td>

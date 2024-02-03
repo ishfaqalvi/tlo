@@ -15,6 +15,15 @@ class CatalogSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('categories')->insert([
+            [
+                'title'      => 'Default Category',
+                'created_by' => 1,
+                'updated_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
         DB::table('provinces')->insert([
             [
                 'title'      => 'Balkh',
@@ -43,7 +52,42 @@ class CatalogSeeder extends Seeder
                 'updated_by' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
+            ]
+        ]);
+
+        DB::table('stakeholder_roles')->insert([
+            [
+                'title'      => 'Partner',
+                'created_by' => 1,
+                'updated_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
             ],
+            [
+                'title'      => 'Donnar',
+                'created_by' => 1,
+                'updated_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
+        DB::table('site_types')->insert([
+            [
+                'title'      => 'Default Site Type',
+                'created_by' => 1,
+                'updated_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+        ]);
+        DB::table('activity_progress')->insert([
+            [
+                'title'      => 'Default Activity Progress',
+                'created_by' => 1,
+                'updated_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
         ]);
     }
 }

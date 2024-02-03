@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('projects.update', $project->id) }}" class="validate" role="form" enctype="multipart/form-data">
+<form method="POST" action="{{ route('projects.update', $project->id) }}" class="detail" role="form" enctype="multipart/form-data">
     @csrf
     {{ method_field('PATCH') }}
     <div class="row">   
@@ -23,11 +23,6 @@
             {!! $errors->first('funding', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group col-lg-4 mb-3">
-            {{ Form::label('location') }}
-            {{ Form::text('location', $project->location, ['class' => 'form-control' . ($errors->has('location') ? ' is-invalid' : ''), 'placeholder' => 'Location']) }}
-            {!! $errors->first('location', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-        <div class="form-group col-lg-4 mb-3">
             {{ Form::label('donnor') }}
             {{ Form::text('donnor', $project->donnor, ['class' => 'form-control' . ($errors->has('donnor') ? ' is-invalid' : ''), 'placeholder' => 'Donnor']) }}
             {!! $errors->first('donnor', '<div class="invalid-feedback">:message</div>') !!}
@@ -36,6 +31,11 @@
             {{ Form::label('partner') }}
             {{ Form::text('partner', $project->partner, ['class' => 'form-control' . ($errors->has('partner') ? ' is-invalid' : ''), 'placeholder' => 'Partner']) }}
             {!! $errors->first('partner', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group col-lg-4 mb-3">
+            {{ Form::label('location') }}
+            {{ Form::select('province_id', provinces(), $project->province_id, ['class' => 'form-control select' . ($errors->has('province_id') ? ' is-invalid' : ''), 'placeholder' => '--Select--']) }}
+            {!! $errors->first('province_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group col-lg-4 mb-3">
             {{ Form::label('assigned_to') }}
@@ -54,12 +54,12 @@
         </div>
         <div class="form-group col-lg-12 mb-3">
             {{ Form::label('description') }}
-            {{ Form::text('description', $project->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Description','id'=>'ckeditor']) }}
+            {{ Form::textarea('description', $project->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Description','id'=>'ckeditor']) }}
             {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="col-md-12 d-flex justify-content-end align-items-center mt-3">
             <button type="submit" class="btn btn-primary ms-3">
-                Submit <i class="ph-paper-plane-tilt ms-2"></i>
+                Save <i class="ph-paper-plane-tilt ms-2"></i>
             </button>
         </div>
     </div>
