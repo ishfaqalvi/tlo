@@ -48,6 +48,18 @@ class PermissionSeeder extends Seeder
                   'sites-edit', 
                   'sites-delete',
 
+                  'activities-list', 
+                  'activities-view', 
+                  'activities-create', 
+                  'activities-edit', 
+                  'activities-delete',
+
+                  'indicators-list', 
+                  'indicators-view', 
+                  'indicators-create', 
+                  'indicators-edit', 
+                  'indicators-delete',
+
                   'categories-list', 
                   'categories-view', 
                   'categories-create', 

@@ -31,45 +31,58 @@
             <h5 class="mb-0">{{ __('Show') }} Site</h5>
         </div>
         <div class="card-body">
-            <div class="form-group mb-3">
-                <strong>Site Type:</strong>
-                {{ $site->siteType->title }}
-            </div>
-            <div class="form-group mb-3">
-                <strong>Province:</strong>
-                {{ $site->province->title }}
-            </div>
-            <div class="form-group mb-3">
-                <strong>Name:</strong>
-                {{ $site->name }}
-            </div>
-            <div class="form-group mb-3">
-                <strong>Office:</strong>
-                {{ $site->office }}
-            </div>
-            <div class="form-group mb-3">
-                <strong>Contact Name:</strong>
-                {{ $site->contact_name }}
-            </div>
-            <div class="form-group mb-3">
-                <strong>Contact Number:</strong>
-                {{ $site->contact_number }}
-            </div>
-            <div class="form-group mb-3">
-                <strong>Latitude:</strong>
-                {{ $site->latitude }}
-            </div>
-            <div class="form-group mb-3">
-                <strong>Longitude:</strong>
-                {{ $site->longitude }}
-            </div>
-            <div class="form-group mb-3">
-                <strong>Status:</strong>
-                {{ $site->status }}
-            </div>
-            <div class="form-group mb-3">
-                <strong>Note:</strong>
-                {{ $site->note }}
+            <div class="row">
+                <div class="form-group col-lg-3 mb-3">
+                    <strong>Site Type:</strong>
+                    {{ $site->siteType->title }}
+                </div>
+                <div class="form-group col-lg-3 mb-3">
+                    <strong>Province:</strong>
+                    {{ $site->province->title }}
+                </div>
+                <div class="form-group col-lg-3 mb-3">
+                    <strong>Name:</strong>
+                    {{ $site->name }}
+                </div>
+                <div class="form-group col-lg-3 mb-3">
+                    <strong>Office:</strong>
+                    {{ $site->office }}
+                </div>
+                <div class="form-group col-lg-3 mb-3">
+                    <strong>Contact Name:</strong>
+                    {{ $site->contact_name }}
+                </div>
+                <div class="form-group col-lg-3 mb-3">
+                    <strong>Contact Number:</strong>
+                    {{ $site->contact_number }}
+                </div>
+                <div class="form-group col-lg-3 mb-3">
+                    <strong>Latitude:</strong>
+                    {{ $site->latitude }}
+                </div>
+                <div class="form-group col-lg-3 mb-3">
+                    <strong>Longitude:</strong>
+                    {{ $site->longitude }}
+                </div>
+                <div class="form-group col-lg-3 mb-3">
+                    <strong>Status:</strong>
+                    {{ $site->status }}
+                </div>
+                <div class="form-group col-lg-9 mb-3">
+                    <strong>Note:</strong>
+                    {{ $site->note }}
+                </div>
+                <div class="col-md-12">
+                    <div class="map-container" id="map{{ $site->id }}"></div>
+                    <script type="text/javascript">
+                        var map = L.map('map<?php echo $site->id ?>').setView([
+                            "<?php echo $site->latitude ?>", "<?php echo $site->longitude ?>"], 13);
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            className: 'map-leaflet'
+                        }).addTo(map);
+                        L.marker(["<?php echo $site->latitude ?>", "<?php echo $site->longitude ?>"]).addTo(map).bindPopup("<?php echo $site->name ?>").openPopup();
+                    </script>
+                </div>
             </div>
         </div>
     </div>

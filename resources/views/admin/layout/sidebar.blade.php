@@ -39,6 +39,22 @@
     </a>
 </li>
 @endcan
+@can('activities-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('activities*') ? 'active' : ''}}" href="{{ route('activities.index') }}">
+        <i class="ph-list-bullets"></i>
+        <span>Activity</span>
+    </a>
+</li>
+@endcan
+@can('indicators-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('indicators*') ? 'active' : ''}}" href="{{ route('indicators.index') }}">
+        <i class="ph-chart-bar"></i>
+        <span>Indicators</span>
+    </a>
+</li>
+@endcan
 @canany(['categories-list', 'provinces-list','stakeholderRoles-list','siteTypes-list','activityProgress-list'])
 <li class="nav-item-header">
     <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Catalog Management</div>

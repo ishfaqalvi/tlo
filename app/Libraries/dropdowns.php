@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Project\ProjectPhase;
-use App\Models\{User,Stakeholder,Site};
+use App\Models\{Project,User,Stakeholder,Site};
 use App\Models\Catalog\{Category,Province,StakeholderRole,SiteType,ActivityProgress};
 
 /**
@@ -82,6 +82,16 @@ function stakeholders()
 function sites()
 {
     return Site::pluck('name','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function projects()
+{
+    return Project::pluck('name','id');
 }
 
 /**

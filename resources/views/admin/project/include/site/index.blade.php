@@ -17,57 +17,74 @@
         </div>
     </div>
 </div>
-<table class="table datatable-basic">
-    <thead class="thead">
-        <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Site Type</th>
-            <th>Province</th>
-            <th>Office</th>
-            <th>Contact Name</th>
-            <th>Contact Number</th>
-            <th>Status</th>
-            <th class="text-center">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach ($project->sites as $key => $row)
-        <tr>
-            <td>{{ ++$key }}</td>
-            <td>{{ $row->site->name }}</td>
-            <td>{{ $row->site->siteType->title }}</td>
-            <td>{{ $row->site->province->title }}</td>
-            <td>{{ $row->site->office }}</td>
-            <td>{{ $row->site->contact_name }}</td>
-            <td>{{ $row->site->contact_number }}</td>
-            <td>{{ $row->site->status }}</td>
-            <td class="text-center">
-                @canany(['projectSite-delete'])
-                <div class="d-inline-flex">
-                    <div class="dropdown">
-                        <a href="#" class="text-body" data-bs-toggle="dropdown">
-                            <i class="ph-list"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <form action="{{ route('projects.sites.destroy',$row->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                @can('projectSite-delete')
-                                    <button type="submit" class="dropdown-item sa-confirm">
-                                        <i class="ph-trash me-2"></i>{{ __('Delete') }}
-                                    </button>
-                                @endcan
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                @endcanany
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
+@foreach ($project->sites as $key => $row)
+@php($site = $row->site)
+<div class="row">
+    <div class="col-md-8">
+        <div class="map-container" id="map{{ $key }}"></div>
+        <script type="text/javascript">
+            var map = L.map('map<?php echo $key ?>').setView([
+                "<?php echo $site->latitude ?>", "<?php echo $site->longitude ?>"], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                className: 'map-leaflet'
+            }).addTo(map);
+            L.marker(["<?php echo $site->latitude ?>", "<?php echo $site->longitude ?>"]).addTo(map).bindPopup("<?php echo $site->name ?>").openPopup();
+        </script>
+    </div>
+    <div class="col-md-4">
+        <form action="{{ route('projects.sites.destroy',$row->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            @can('projectSite-delete')
+                <button type="submit" class="btn btn-outline-danger sa-confirm">
+                    <i class="ph-trash me-2"></i>{{ __('Delete') }}
+                </button>
+            @endcan
+        </form>
+        <div class="form-group mb-3">
+            <strong>Site Type:</strong>
+            {{ $site->siteType->title }}
+        </div>
+        <div class="form-group mb-3">
+            <strong>Province:</strong>
+            {{ $site->province->title }}
+        </div>
+        <div class="form-group mb-3">
+            <strong>Name:</strong>
+            {{ $site->name }}
+        </div>
+        <div class="form-group mb-3">
+            <strong>Office:</strong>
+            {{ $site->office }}
+        </div>
+        <div class="form-group mb-3">
+            <strong>Contact Name:</strong>
+            {{ $site->contact_name }}
+        </div>
+        <div class="form-group mb-3">
+            <strong>Contact Number:</strong>
+            {{ $site->contact_number }}
+        </div>
+        <div class="form-group mb-3">
+            <strong>Latitude:</strong>
+            {{ $site->latitude }}
+        </div>
+        <div class="form-group mb-3">
+            <strong>Longitude:</strong>
+            {{ $site->longitude }}
+        </div>
+        <div class="form-group mb-3">
+            <strong>Status:</strong>
+            {{ $site->status }}
+        </div>
+        <div class="form-group mb-3">
+            <strong>Note:</strong>
+            {{ $site->note }}
+        </div>
+    </div>
+</div>
+<hr>
+@endforeach
 <div id="addSite" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">

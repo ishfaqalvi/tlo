@@ -7,6 +7,7 @@
 <link href="{{ asset('assets/fonts/inter/inter.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('assets/icons/phosphor/styles.min.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('assets/css/all.min.css') }}" id="stylesheet" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <link href="{{ asset('assets/demo/dropify/css/dropify.css') }}" rel="stylesheet" type="text/css">
 <!-- /global stylesheets -->
 
@@ -30,6 +31,8 @@
 <script src="{{ asset('assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/editors/ckeditor/ckeditor_classic.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/maps/leaflet/leaflet.min.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/maps/leaflet/plugins/markercluster.min.js') }}"></script>
 
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <script src="{{ asset('assets/demo/pages/form_wizard.js') }}"></script>
