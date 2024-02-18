@@ -42,6 +42,7 @@
 					<th>Description</th>
 					<th>Budget Amount</th>
 					<th>Actual Spent</th>
+                    <th>Remaining</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
@@ -52,10 +53,19 @@
 					<td>{{ $budget->description }}</td>
 					<td>{{ number_format($budget->budget_amount) }}</td>
 					<td>{{ number_format($budget->actual_spent) }}</td>
+                    <td>{{ number_format($budget->budget_amount - $budget->actual_spent) }}</td>
                     <td class="text-center">@include('admin.activities.budget.actions')</td>
                 </tr>
             @endforeach
             </tbody>
+            <tfoot>
+                <tr class="table-light">
+                    <td colspan="5" class="fw-semibold">Total Remaining</td>
+                    <td class="text-end">
+                        {{ number_format($activity->budgets()->sum('budget_amount') - $activity->budgets()->sum('actual_spent')) }}
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>

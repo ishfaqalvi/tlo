@@ -32,67 +32,55 @@
         <div class="card-header">
             <h5 class="mb-0">Site</h5>
         </div>
-        @foreach ($sites as $key => $site)
-        <div class="row">
-            <div class="col-md-8">
-                <div class="map-container" id="map{{ $key }}"></div>
-                <script type="text/javascript">
-                    var map = L.map('map<?php echo $key ?>').setView([
-                        "<?php echo $site->latitude ?>", "<?php echo $site->longitude ?>"], 13);
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        className: 'map-leaflet'
-                    }).addTo(map);
-                    L.marker(["<?php echo $site->latitude ?>", "<?php echo $site->longitude ?>"]).addTo(map).bindPopup("<?php echo $site->name ?>").openPopup();
-                </script>
-            </div>
-            <div class="col-md-4">
-                @include('admin.site.actions')
-                <div class="form-group mb-3">
-                    <strong>Site Type:</strong>
-                    {{ $site->siteType->title }}
-                </div>
-                <div class="form-group mb-3">
-                    <strong>Province:</strong>
-                    {{ $site->province->title }}
-                </div>
-                <div class="form-group mb-3">
-                    <strong>Name:</strong>
-                    {{ $site->name }}
-                </div>
-                <div class="form-group mb-3">
-                    <strong>Office:</strong>
-                    {{ $site->office }}
-                </div>
-                <div class="form-group mb-3">
-                    <strong>Contact Name:</strong>
-                    {{ $site->contact_name }}
-                </div>
-                <div class="form-group mb-3">
-                    <strong>Contact Number:</strong>
-                    {{ $site->contact_number }}
-                </div>
-                <div class="form-group mb-3">
-                    <strong>Latitude:</strong>
-                    {{ $site->latitude }}
-                </div>
-                <div class="form-group mb-3">
-                    <strong>Longitude:</strong>
-                    {{ $site->longitude }}
-                </div>
-                <div class="form-group mb-3">
-                    <strong>Status:</strong>
-                    {{ $site->status }}
-                </div>
-                <div class="form-group mb-3">
-                    <strong>Note:</strong>
-                    {{ $site->note }}
-                </div>
-            </div>
-        </div>
-        <hr>
-        @endforeach
+        <table class="table datatable-basic">
+            <thead class="thead">
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Site Type</th>
+                    <th>Province</th>
+                    <th>Office</th>
+                    <th>Contact Name</th>
+                    <th>Contact Number</th>
+                    <th>Status</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($sites as $key => $site)
+                    <tr>
+                        <td>{{ ++$key }}</td>
+                        <td>{{ $site->name }}</td>
+                        <td>{{ $site->siteType->title }}</td>
+                        <td>{{ $site->province->title }}</td>
+                        <td>{{ $site->office }}</td>
+                        <td>{{ $site->contact_name }}</td>
+                        <td>{{ $site->contact_number }}</td>
+                        <td>{{ $site->status }}</td>
+                        <td class="text-center">@include('admin.site.actions')</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="map-container" id="map"></div>
     </div>
 </div>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap" type="text/javascript"></script>
+<script type="text/javascript">
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 6,
+            center: {lat: 33.889250452146115, lng: 64.78623096987168}
+        });
+        @foreach($sites as $site)
+            var marker = new google.maps.Marker({
+                position: {lat: {{ $site->latitude }}, lng: {{ $site->longitude }}},
+                map: map,
+                title: '{{ $site->name }}'
+            });
+        @endforeach
+    }
+</script>
 @endsection
 
 @section('script')

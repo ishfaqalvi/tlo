@@ -73,18 +73,24 @@
                     {{ $site->note }}
                 </div>
                 <div class="col-md-12">
-                    <div class="map-container" id="map{{ $site->id }}"></div>
-                    <script type="text/javascript">
-                        var map = L.map('map<?php echo $site->id ?>').setView([
-                            "<?php echo $site->latitude ?>", "<?php echo $site->longitude ?>"], 13);
-                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                            className: 'map-leaflet'
-                        }).addTo(map);
-                        L.marker(["<?php echo $site->latitude ?>", "<?php echo $site->longitude ?>"]).addTo(map).bindPopup("<?php echo $site->name ?>").openPopup();
-                    </script>
+                    <div class="map-container" id="map"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&callback=initMap" type="text/javascript"></script>
+<script type="text/javascript">
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 6,
+            center: {lat: 33.889250452146115, lng: 64.78623096987168}
+        });
+        var marker = new google.maps.Marker({
+            position: {lat: {{ $site->latitude }}, lng: {{ $site->longitude }}},
+            map: map,
+            title: '{{ $site->name }}'
+        });
+    }
+</script>
 @endsection

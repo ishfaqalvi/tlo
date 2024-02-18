@@ -39,7 +39,7 @@
             <table class="table table-bordered table-lg">
                 <tbody>
                     <tr class="table-light">
-                        <th colspan="5">Project Files</th>
+                        <th colspan="6">Project Files</th>
                     </tr>
                     <tr>
                         <th>#</th>
@@ -58,30 +58,34 @@
                         </tr>
                     @empty
                         <tr align="center">
-                            <th colspan="5">No file is available!</th>
+                            <th colspan="6">No file is available!</th>
                         </tr>
                     @endforelse
                     <tr class="table-light">
-                        <th colspan="5">Activity Files</th>
+                        <th colspan="6">Activity Files</th>
                     </tr>
                     <tr>
                         <th>#</th>
-                        <th>Activity</th>
                         <th>File Name</th>
                         <th>Path</td>
                         <th>Added Date</td>
+                        <th>Download</td>
                     </tr>
                     @forelse($project->files()->whereNotNull('activity_id')->get() as $key => $file)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ $file->activity->name }}</td>
                             <td>{{ $file->name }}</td>
                             <td>{{ $file->path }}</td>
                             <td>{{ $file->created_at }}</td>
+                            <td>
+                                <a href="{{ $file->path }}" class="dropdown-item" target="_blank">
+                                    <i class="ph-download me-2"></i>{{ __('Download') }}
+                                </a>
+                            </td>
                         </tr>
                     @empty
                         <tr align="center">
-                            <th colspan="5">No file is available!</th>
+                            <th colspan="6">No file is available!</th>
                         </tr>
                     @endforelse
                 </tbody>

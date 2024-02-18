@@ -61,4 +61,10 @@
         Reporting Periods
     </a>
     @endcan
+    <a 
+        href="{{ route('projects.budget.index',$project->id )}}"
+        class="d-flex align-items-center text-body p-2 {{ request()->routeIs('projects.budget.index*') ? 'active' : ''}}">
+        <i class="ph-currency-circle-dollar me-1"></i>
+        Budget
+    </a>
 </div>

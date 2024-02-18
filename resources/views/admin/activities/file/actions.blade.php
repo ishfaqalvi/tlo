@@ -8,6 +8,9 @@
             <form action="{{ route('projects.files.destroy',$file->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
+                <a href="{{ $file->path }}" class="dropdown-item" target="_blank">
+                    <i class="ph-download me-2"></i>{{ __('Download') }}
+                </a>
                 @can('projectFile-edit')
                     <a 
                         href="#" 

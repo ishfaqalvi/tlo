@@ -47,6 +47,18 @@
 @section('script')
 <script>
     $(function(){
+        function iconFormat(icon) {
+            var originalOption = icon.element;
+            if (!icon.id) { return icon.text; }
+            var $icon = '<i class="ph-circle ' + $(icon.element).data('color') + '"></i>' + icon.text;
+            return $icon;
+        }
+        $('.select-icons').select2({
+            templateResult: iconFormat,
+            minimumResultsForSearch: Infinity,
+            templateSelection: iconFormat,
+            escapeMarkup: function(m) { return m; }
+        });
         $('.select').select2();
         $('.validate').validate({
             errorClass: 'validation-invalid-label',

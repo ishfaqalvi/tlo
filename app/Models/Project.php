@@ -177,20 +177,11 @@ class Project extends Model implements Auditable
         return $this->hasMany('App\Models\Project\ProjectReportingPeriod', 'project_id', 'id');
     }
 
-
-    
-
-    
-
-    
-
-    
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function activities()
     {
-        return $this->hasMany('App\Models\Project\ProjectActivity', 'project_id', 'id');
+        return $this->hasMany('App\Models\Activity', 'project_id', 'id');
     }   
 }

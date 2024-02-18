@@ -21,8 +21,11 @@
     </div>
     <div class="form-group col-lg-4 mb-3">
         {{ Form::label('status') }}
-        {{ Form::select('status', ['Green'=>'Green','Amber'=>'Amber','Red'=>'Red'], $activity->status, ['class' => 'form-control select' . ($errors->has('status') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required']) }}
-        {!! $errors->first('status', '<div class="invalid-feedback">:message</div>') !!}
+        <select name="status" data-placeholder="--Select--" class="form-control select-icons">
+            <option value="Green" data-color="text-success" {{ $activity->status == "Green" ? 'selected' : '' }}>Green</option>
+            <option value="Amber" data-color="text-warning" {{ $activity->status == "Amber" ? 'selected' : '' }}>Amber</option>
+            <option value="Red" data-color="text-danger" {{ $activity->status == "Red" ? 'selected' : '' }}>Red</option>
+        </select>
     </div>
     <div class="form-group col-lg-4 mb-3 pt-4">
         {{ Form::hidden('milestone', null) }}

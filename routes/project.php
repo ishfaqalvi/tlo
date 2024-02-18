@@ -132,3 +132,16 @@ Route::group([
     Route::post('range/update',         'updateRange' )->name('range.update' );
     Route::delete('range/delete/{id}',  'destroyRange')->name('range.destroy');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Project Budget Routes
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'prefix'    => 'budgets',
+    'as'        => 'projects.budget.',
+    'controller'=> BudgetController::class
+], function () {
+    Route::get('list/{id}',   'index')->name('index');
+});

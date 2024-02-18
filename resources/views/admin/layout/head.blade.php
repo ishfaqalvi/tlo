@@ -29,6 +29,7 @@
 <script src="{{ asset('assets/js/vendor/pickers/datepicker.min.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/visualization/echarts/echarts.min.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/editors/ckeditor/ckeditor_classic.js') }}"></script>
 
 <script src="{{ asset('assets/js/app.js') }}"></script>

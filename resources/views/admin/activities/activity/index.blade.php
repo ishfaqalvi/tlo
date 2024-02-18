@@ -53,7 +53,7 @@
                     <td>
                         {{ $activity->name }}
                         @if($activity->milestone == 'Yes')
-                        <a href="#" class="badge bg-warning text-white rounded-pill p-2">
+                        <a href="#" class="badge bg-warning text-white rounded-pill p-1">
                             M
                         </a>
                         @endif

@@ -89,7 +89,7 @@
 <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('site-types*') ? 'active' : ''}}" href="{{ route('site-types.index') }}">
         <i class="ph-list-dashes"></i>
-        <span>Site Types</span>
+        <span>Thematic Area/Sector</span>
     </a>
 </li>
 @endcan
