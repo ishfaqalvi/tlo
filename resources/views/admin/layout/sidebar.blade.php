@@ -23,6 +23,22 @@
     </a>
 </li>
 @endcan
+@can('indicators-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('indicators*') ? 'active' : ''}}" href="{{ route('indicators.index') }}">
+        <i class="ph-chart-bar"></i>
+        <span>Indicators</span>
+    </a>
+</li>
+@endcan
+@can('activities-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('activities*') ? 'active' : ''}}" href="{{ route('activities.index') }}">
+        <i class="ph-list-bullets"></i>
+        <span>Activity</span>
+    </a>
+</li>
+@endcan
 @can('stakeholders-list')
 <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('stakeholders*') ? 'active' : ''}}" href="{{ route('stakeholders.index') }}">
@@ -36,22 +52,6 @@
     <a class="nav-link {{ request()->routeIs('sites*') ? 'active' : ''}}" href="{{ route('sites.index') }}">
         <i class="ph-globe"></i>
         <span>Sites</span>
-    </a>
-</li>
-@endcan
-@can('activities-list')
-<li class="nav-item">
-    <a class="nav-link {{ request()->routeIs('activities*') ? 'active' : ''}}" href="{{ route('activities.index') }}">
-        <i class="ph-list-bullets"></i>
-        <span>Activity</span>
-    </a>
-</li>
-@endcan
-@can('indicators-list')
-<li class="nav-item">
-    <a class="nav-link {{ request()->routeIs('indicators*') ? 'active' : ''}}" href="{{ route('indicators.index') }}">
-        <i class="ph-chart-bar"></i>
-        <span>Indicators</span>
     </a>
 </li>
 @endcan

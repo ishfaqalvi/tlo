@@ -20,15 +20,16 @@ Route::group(['as' => 'projects.', 'controller' => ProjectController::class], fu
 
 /*
 |--------------------------------------------------------------------------
-| Project Stakeholder Routes
+| Project Sites Routes
 |--------------------------------------------------------------------------
 */
 Route::group([
-    'prefix'    => 'stakeholder',
-    'as'        => 'projects.stakeholder.',
-    'controller'=> StakeholderController::class
+    'prefix'    => 'sites',
+    'as'        => 'projects.sites.',
+    'controller'=> SiteController::class
 ], function () {
-    Route::post('store',               'store'      )->name('store'	     );
+    Route::get('list/{id}',            'index'      )->name('index'      );
+    Route::post('store',               'store'      )->name('store'      );
     Route::delete('delete/{id}',       'destroy'    )->name('destroy'    );
     Route::post('check_record',        'checkRecord')->name('checkRecord');
 });
@@ -43,6 +44,7 @@ Route::group([
     'as'        => 'projects.phase.',
     'controller'=> PhaseController::class
 ], function () {
+    Route::get('list/{id}',         'index'  )->name('index'  );
     Route::post('store',            'store'  )->name('store'  );
     Route::post('update',           'update' )->name('update' );
     Route::delete('delete/{id}',    'destroy')->name('destroy');
@@ -50,30 +52,83 @@ Route::group([
 
 /*
 |--------------------------------------------------------------------------
-| Project Sites Routes
+| Project Stakeholder Routes
 |--------------------------------------------------------------------------
 */
 Route::group([
-    'prefix'    => 'sites',
-    'as'        => 'projects.sites.',
-    'controller'=> SiteController::class
+    'prefix'    => 'stakeholder',
+    'as'        => 'projects.stakeholder.',
+    'controller'=> StakeholderController::class
 ], function () {
-    Route::post('store',               'store'      )->name('store'      );
-    Route::delete('delete/{id}',       'destroy'    )->name('destroy'    );
-    Route::post('check_record',        'checkRecord')->name('checkRecord');
+    Route::get('list/{id}',         'index'      )->name('index'      );
+    Route::post('store',            'store'      )->name('store'	  );
+    Route::delete('delete/{id}',    'destroy'    )->name('destroy'    );
+    Route::post('check_record',     'checkRecord')->name('checkRecord');
 });
 
 /*
 |--------------------------------------------------------------------------
-| Project Activity Routes
+| Project Files Routes
 |--------------------------------------------------------------------------
 */
 Route::group([
-    'prefix'    => 'activities',
-    'as'        => 'projects.activities.',
-    'controller'=> ActivityController::class
+    'prefix'    => 'files',
+    'as'        => 'projects.files.',
+    'controller'=> FileController::class
 ], function () {
+    Route::get('list/{id}',         'index'  )->name('index'  );
     Route::post('store',            'store'  )->name('store'  );
     Route::post('update',           'update' )->name('update' );
     Route::delete('delete/{id}',    'destroy')->name('destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Project Disaggregation Routes
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'prefix'    => 'disaggregation',
+    'as'        => 'projects.disaggregation.',
+    'controller'=> DisaggregationController::class
+], function () {
+    Route::get('list/{id}',         'index'  )->name('index'  );
+    Route::post('store',            'store'  )->name('store'  );
+    Route::post('update',           'update' )->name('update' );
+    Route::delete('delete/{id}',    'destroy')->name('destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Project Team Member Routes
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'prefix'    => 'team-members',
+    'as'        => 'projects.team-members.',
+    'controller'=> TeamMemberController::class
+], function () {
+    Route::get('list/{id}',         'index'      )->name('index'      );
+    Route::post('store',            'store'      )->name('store'      );
+    Route::delete('delete/{id}',    'destroy'    )->name('destroy'    );
+    Route::post('check_record',     'checkRecord')->name('checkRecord');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Project Reporting Periods Routes
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'prefix'    => 'reporting-periods',
+    'as'        => 'projects.reporting-periods.',
+    'controller'=> ReportingPeriodController::class
+], function () {
+    Route::get('list/{id}',             'index'       )->name('index'        );
+    Route::post('store',                'store'       )->name('store'        );
+    Route::post('update',               'update'      )->name('update'       );
+    Route::delete('delete/{id}',        'destroy'     )->name('destroy'      );
+    Route::post('range/store',          'storeRange'  )->name('range.store'  );
+    Route::post('range/update',         'updateRange' )->name('range.update' );
+    Route::delete('range/delete/{id}',  'destroyRange')->name('range.destroy');
 });

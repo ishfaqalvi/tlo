@@ -35,7 +35,7 @@ class ProjectController extends Controller
     {
         $projects = Project::get();
 
-        return view('admin.project.index', compact('projects'));
+        return view('admin.projects.project.index', compact('projects'));
     }
 
     /**
@@ -46,7 +46,7 @@ class ProjectController extends Controller
     public function create()
     {
         $project = new Project();
-        return view('admin.project.create', compact('project'));
+        return view('admin.projects.project.create', compact('project'));
     }
 
     /**
@@ -72,7 +72,7 @@ class ProjectController extends Controller
     {
         $project = Project::find($id);
 
-        return view('admin.project.show', compact('project'));
+        return view('admin.projects.project.show', compact('project'));
     }
 
     /**
@@ -85,7 +85,7 @@ class ProjectController extends Controller
     {
         $project = Project::find($id);
 
-        return view('admin.project.edit', compact('project'));
+        return view('admin.projects.project.edit', compact('project'));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Project;
 use App\Http\Controllers\Controller;
 
+use App\Models\{Project,Site};
 use App\Models\Project\ProjectSite;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,20 @@ class SiteController extends Controller
      */
     function __construct()
     {
+        $this->middleware('permission:projectSite-list',  ['only' => ['index']]);
         $this->middleware('permission:projectSite-create',['only' => ['store']]);
         $this->middleware('permission:projectSite-delete',['only' => ['destroy']]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index($id)
+    {
+        $project = Project::find($id);
+        return view('admin.projects.site.index', compact('project'));
     }
 
     /**
@@ -31,7 +44,12 @@ class SiteController extends Controller
      */
     public function store(Request $request)
     {
-        $projectSite = ProjectSite::create($request->all());
+        $input = $request->all();
+        if ($input['type'] == 'New Add') {
+            $site = Site::create($request->all());
+            $input['site_id'] = $site->id;
+        }
+        ProjectSite::create($input);
         return redirect()->back()->with('success', 'Site created successfully!');
     }
 

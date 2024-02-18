@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Project\ProjectPhase;
-use App\Models\{Project,User,Stakeholder,Site};
+use App\Models\{Project,User,Stakeholder,Site,Indicator};
 use App\Models\Catalog\{Category,Province,StakeholderRole,SiteType,ActivityProgress};
 
 /**
@@ -113,4 +113,14 @@ function projectSites($id)
 function projectPhases($id)
 {
     return ProjectPhase::whereProjectId($id)->pluck('name','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function indicators($id)
+{
+    return Indicator::whereProjectId($id)->pluck('name','id');
 }

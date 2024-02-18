@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Project;
 use App\Http\Controllers\Controller;
 
+use App\Models\Project;
 use App\Models\Project\ProjectPhase;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,21 @@ class PhaseController extends Controller
      */
     function __construct()
     {
+        $this->middleware('permission:projectPhase-list',  ['only' => ['index']]);
         $this->middleware('permission:projectPhase-create',['only' => ['store']]);
         $this->middleware('permission:projectPhase-edit',  ['only' => ['update']]);
         $this->middleware('permission:projectPhase-delete',['only' => ['destroy']]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index($id)
+    {
+        $project = Project::find($id);
+        return view('admin.projects.phase.index', compact('project'));
     }
 
     /**

@@ -21,20 +21,72 @@ class PermissionSeeder extends Seeder
                   'projects-create', 
                   'projects-edit', 
                   'projects-delete',
-                  'projectStakeholder-list',
-                  'projectStakeholder-create',
-                  'projectStakeholder-delete',
+
+                  'projectSite-list',
+                  'projectSite-create',
+                  'projectSite-delete',
+
                   'projectPhase-list',
                   'projectPhase-create',
                   'projectPhase-edit',
                   'projectPhase-delete',
-                  'projectSite-list',
-                  'projectSite-create',
-                  'projectSite-delete',
-                  'projectActivity-list',
-                  'projectActivity-create',
-                  'projectActivity-edit',
-                  'projectActivity-delete',
+
+                  'projectStakeholder-list',
+                  'projectStakeholder-create',
+                  'projectStakeholder-delete',
+                  
+                  'projectFile-list',
+                  'projectFile-create',
+                  'projectFile-edit',
+                  'projectFile-delete',
+
+                  'projectDisaggregation-list',
+                  'projectDisaggregation-create',
+                  'projectDisaggregation-edit',
+                  'projectDisaggregation-delete',
+
+                  'projectTeamMember-list',
+                  'projectTeamMember-create',
+                  'projectTeamMember-delete',
+
+                  'projectReportingPeriod-list',
+                  'projectReportingPeriod-create',
+                  'projectReportingPeriod-edit',
+                  'projectReportingPeriod-delete',
+
+                  'indicators-list', 
+                  'indicators-view', 
+                  'indicators-create', 
+                  'indicators-edit', 
+                  'indicators-delete',
+
+                  'activities-list', 
+                  'activities-view', 
+                  'activities-create', 
+                  'activities-edit', 
+                  'activities-delete',
+
+                  'activityBudget-list',
+                  'activityBudget-create', 
+                  'activityBudget-edit', 
+                  'activityBudget-delete',
+
+                  'activityFile-list',
+                  'activityFile-create', 
+                  'activityFile-edit', 
+                  'activitiFile-delete',
+
+                  'activitySite-list',
+                  'activitySite-create',
+                  'activitySite-delete',
+
+                  'activityStakeholder-list',
+                  'activityStakeholder-create',
+                  'activityStakeholder-delete',
+
+                  'activityIndicator-list',
+                  'activityIndicator-create',
+                  'activityIndicator-delete',
 
                   'stakeholders-list', 
                   'stakeholders-view', 
@@ -47,18 +99,6 @@ class PermissionSeeder extends Seeder
                   'sites-create', 
                   'sites-edit', 
                   'sites-delete',
-
-                  'activities-list', 
-                  'activities-view', 
-                  'activities-create', 
-                  'activities-edit', 
-                  'activities-delete',
-
-                  'indicators-list', 
-                  'indicators-view', 
-                  'indicators-create', 
-                  'indicators-edit', 
-                  'indicators-delete',
 
                   'categories-list', 
                   'categories-view', 

@@ -51,16 +51,17 @@ class Project extends Model implements Auditable
     protected $fillable = [
         'code',
         'name',
+        'stage',
         'start_date',
         'end_date',
-        'funding',
-        'donnor',
-        'partner',
-        'description',
         'province_id',
         'assigned_to',
         'category_id',
-        'status'
+        'funding',
+        'donnor',
+        'partner',
+        'status',
+        'description'
     ];
 
     /**
@@ -117,12 +118,15 @@ class Project extends Model implements Auditable
         return $this->hasOne('App\Models\User', 'id', 'assigned_to');
     }
 
+
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function stakeholders()
+    public function sites()
     {
-        return $this->hasMany('App\Models\Project\ProjectStakeholder', 'project_id', 'id');
+        return $this->hasMany('App\Models\Project\ProjectSite', 'project_id', 'id');
     }
 
     /**
@@ -136,10 +140,51 @@ class Project extends Model implements Auditable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function sites()
+    public function stakeholders()
     {
-        return $this->hasMany('App\Models\Project\ProjectSite', 'project_id', 'id');
+        return $this->hasMany('App\Models\Project\ProjectStakeholder', 'project_id', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function files()
+    {
+        return $this->hasMany('App\Models\Project\ProjectFile', 'project_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function disaggregations()
+    {
+        return $this->hasMany('App\Models\Project\ProjectDisaggregation', 'project_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function teamMembers()
+    {
+        return $this->hasMany('App\Models\Project\ProjectTeamMember', 'project_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reportingPeriods()
+    {
+        return $this->hasMany('App\Models\Project\ProjectReportingPeriod', 'project_id', 'id');
+    }
+
+
+    
+
+    
+
+    
+
+    
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

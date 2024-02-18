@@ -48,5 +48,4 @@ class ProjectStakeholder extends Model implements Auditable
     {
         return $this->hasOne('App\Models\Stakeholder', 'id', 'stakeholder_id');
     }
-    
 }

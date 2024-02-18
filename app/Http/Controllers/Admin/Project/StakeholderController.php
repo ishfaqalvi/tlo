@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Project;
 use App\Http\Controllers\Controller;
 
+use App\Models\{Project,Stakeholder};
 use App\Models\Project\ProjectStakeholder;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,20 @@ class StakeholderController extends Controller
      */
     function __construct()
     {
+        $this->middleware('permission:projectStakeholder-list',  ['only' => ['index']]);
         $this->middleware('permission:projectStakeholder-create',['only' => ['store']]);
         $this->middleware('permission:projectStakeholder-delete',['only' => ['destroy']]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index($id)
+    {
+        $project = Project::find($id);
+        return view('admin.projects.stakeholder.index', compact('project'));
     }
 
     /**
@@ -31,7 +44,12 @@ class StakeholderController extends Controller
      */
     public function store(Request $request)
     {
-        $project = ProjectStakeholder::create($request->all());
+        $input = $request->all();
+        if ($input['option'] == 'New Add') {
+            $stakeholder = Stakeholder::create($request->all());
+            $input['stakeholder_id'] = $stakeholder->id;
+        }
+        ProjectStakeholder::create($input);
         return redirect()->back()->with('success', 'Stakeholder added successfully!');
     }
 
