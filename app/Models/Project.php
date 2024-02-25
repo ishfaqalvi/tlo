@@ -183,5 +183,21 @@ class Project extends Model implements Auditable
     public function activities()
     {
         return $this->hasMany('App\Models\Activity', 'project_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function resultFrameworks()
+    {
+        return $this->hasMany('App\Models\ResultFramework', 'project_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function indicators()
+    {
+        return $this->hasMany('App\Models\Indicator', 'project_id', 'id');
     }   
 }

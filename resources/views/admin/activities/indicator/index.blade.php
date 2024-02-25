@@ -49,19 +49,34 @@
                 <tr>
                     <td>{{ ++$key }}</td>
 					<td>{{ $indicator->name }}</td>
-					<td>{{ $indicator->level }}</td>
+					<td>{{ $indicator->resultFramework->title ?? '' }}</td>
                     <td>{{ $indicator->status }}</td>
-                    <td></td>
+                    <td>
+                        @if($indicator->format != 'Qualitative Only' && $indicator->aggregated !='Yes')
+                            @php($data = getIndicatorActualVsTarget($indicator))
+                            {{ $data['stat'] }} 
+                            <div class="progress">
+                                <div class="progress-bar bg-teal" style="width: {{ $data['percentage'] }}%" aria-valuenow="{{ $data['percentage'] }}" aria-valuemin="0" aria-valuemax="100">{{ $data['percentage'] }}% complete</div>
+                            </div>
+                        @endif
+                        @if($indicator->format != 'Qualitative Only' && $indicator->aggregated =='Yes')
+                            @php($data = calculateAggregatedTarget($indicator))
+                            {{ $data['stat'] }} 
+                            <div class="progress">
+                                <div class="progress-bar bg-teal" style="width: {{ $data['percentage'] }}%" aria-valuenow="{{ $data['percentage'] }}" aria-valuemin="0" aria-valuemax="100">{{ $data['percentage'] }}% complete</div>
+                            </div>
+                        @endif
+                    </td>
                     <td class="text-center">
                         <form action="{{ route('activities.indicators.destroy',$row->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                @can('activityIndicator-delete')
-                                    <button type="link" class="btn btn-outline-danger btn-xs sa-confirm">
-                                        <i class="ph-trash"></i>
-                                    </button>
-                                @endcan
-                            </form>
+                            @csrf
+                            @method('DELETE')
+                            @can('activityIndicator-delete')
+                                <button type="link" class="btn btn-outline-danger btn-xs sa-confirm">
+                                    <i class="ph-trash"></i>
+                                </button>
+                            @endcan
+                        </form>
                     </td>
                 </tr>
             @endforeach

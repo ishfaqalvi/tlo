@@ -21,8 +21,16 @@ return new class extends Migration
             $table->enum('direction',['Increasing','Decreasing'])->nullable();
             $table->bigInteger('target')->nullable();
             $table->bigInteger('baseline')->nullable();
+            $table->bigInteger('baseline_date')->nullable();
+            $table->string('unit_of_measure')->nullable();
             $table->string('aggregated')->nullable();
+            $table->enum('aggregation_formula',['Sum','Subtraction','Multiplication','Division','Average'])->nullable();
+            $table->string('indicator_number')->nullable();
+            $table->foreignId('result_framework_id')->nullable()->references('id')->on('result_frameworks')->cascadeOnDelete();
             $table->foreignId('frequency')->nullable()->references('id')->on('project_reporting_periods')->cascadeOnDelete();
+            $table->string('key_performance')->nullable();
+            $table->enum('total_vs_actual_formula',['Sum','Average','Median'])->nullable();
+            $table->enum('status',['Not yet started','Postponed','Paused','On Track','Minor Delays','Major Delays']);
             $table->text('description')->nullable();
             $table->timestamps();
         });

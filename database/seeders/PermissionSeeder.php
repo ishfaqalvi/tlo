@@ -54,11 +54,30 @@ class PermissionSeeder extends Seeder
                   'projectReportingPeriod-edit',
                   'projectReportingPeriod-delete',
 
+                  'resultFrameworks-list', 
+                  'resultFrameworks-view', 
+                  'resultFrameworks-create', 
+                  'resultFrameworks-edit', 
+                  'resultFrameworks-delete',
+
                   'indicators-list', 
                   'indicators-view', 
                   'indicators-create', 
                   'indicators-edit', 
                   'indicators-delete',
+
+                  'indicatorTarget-list', 
+                  'indicatorTarget-link', 
+                  'indicatorTarget-unlink',
+
+                  'indicatorDataCollections-list', 
+                  'indicatorDataCollections-create', 
+                  'indicatorDataCollections-edit', 
+                  'indicatorDataCollections-delete',
+
+                  'indicatorContributions-list', 
+                  'indicatorContributions-create', 
+                  'indicatorContributions-delete',
 
                   'activities-list', 
                   'activities-view', 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Indicator;
 use App\Http\Controllers\Controller;
 
-use App\Models\Indicator;
+use App\Models\{Indicator,Project};
 use Illuminate\Http\Request;
 
 /**
@@ -31,11 +31,16 @@ class IndicatorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $indicators = Indicator::get();
+        $indicators = array();
+        $project = '';
+        $indicatorProjectId = $request->session()->get('indicatorProjectId');
+        if (!empty($indicatorProjectId)) {
+            $project = Project::find($indicatorProjectId);  
+        }
 
-        return view('admin.indicators.indicator.index', compact('indicators'));
+        return view('admin.indicators.indicator.index', compact('project','indicatorProjectId'));
     }
 
     /**
@@ -60,6 +65,18 @@ class IndicatorController extends Controller
         $indicator = Indicator::create($request->all());
         return redirect()->route('indicators.index')
             ->with('success', 'Indicator created successfully.');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function setProject(Request $request)
+    {
+        $request->session()->put('indicatorProjectId', $request->id);
+        return response()->json(['message' => 'Project selected successfully!']);
     }
 
     /**
@@ -99,8 +116,7 @@ class IndicatorController extends Controller
     {
         $indicator->update($request->all());
 
-        return redirect()->route('indicators.index')
-            ->with('success', 'Indicator updated successfully');
+        return redirect()->back()->with('success', 'Indicator updated successfully');
     }
 
     /**

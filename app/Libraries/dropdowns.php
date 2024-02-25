@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Project\ProjectPhase;
-use App\Models\{Project,User,Stakeholder,Site,Indicator};
+use App\Models\{Project,User,Stakeholder,Site,Indicator,ResultFramework};
+use App\Models\Project\{ProjectPhase,ProjectReportingPeriod,ProjectDisaggregation};
 use App\Models\Catalog\{Category,Province,StakeholderRole,SiteType,ActivityProgress};
 
 /**
@@ -120,7 +120,48 @@ function projectPhases($id)
  *
  * @return \Illuminate\Http\Response
  */
+function projectReportingPeriods($id)
+{
+    return ProjectReportingPeriod::whereProjectId($id)->pluck('title','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function projectDisaggregations($id)
+{
+    return ProjectDisaggregation::whereProjectId($id)->pluck('type','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function resultFrameworks($id)
+{
+    return ResultFramework::whereProjectId($id)->pluck('title','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
 function indicators($id)
 {
     return Indicator::whereProjectId($id)->pluck('name','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function contributerIndicators($indicator)
+{
+    $project = $indicator->project;
+    return $project->indicators()->whereFormat($indicator->format)->whereNull('aggregated')->pluck('name','id');
 }

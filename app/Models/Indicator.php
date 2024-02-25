@@ -38,15 +38,32 @@ class Indicator extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['project_id','name','format','direction','target','baseline','aggregated','frequency','description'];
-
+    protected $fillable = [
+        'project_id',
+        'name',
+        'format',
+        'direction',
+        'target',
+        'baseline',
+        'baseline_date',
+        'unit_of_measure',
+        'aggregated',
+        'aggregation_formula',
+        'indicator_number',
+        'result_framework_id',
+        'frequency',
+        'key_performance',
+        'status',
+        'total_vs_actual_formula',
+        'description'
+    ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Interact with the date.
      */
-    public function activityIndicators()
+    public function setBaselineDateAttribute($value)
     {
-        return $this->hasMany('App\Models\ActivityIndicator', 'indicator_id', 'id');
+        $this->attributes['baseline_date'] = strtotime($value);
     }
     
     /**
@@ -54,7 +71,7 @@ class Indicator extends Model implements Auditable
      */
     public function projectReportingPeriod()
     {
-        return $this->hasOne('App\Models\ProjectReportingPeriod', 'id', 'frequency');
+        return $this->hasOne('App\Models\Project\ProjectReportingPeriod', 'id', 'frequency');
     }
     
     /**
@@ -64,5 +81,28 @@ class Indicator extends Model implements Auditable
     {
         return $this->hasOne('App\Models\Project', 'id', 'project_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function resultFramework()
+    {
+        return $this->hasOne('App\Models\ResultFramework', 'id', 'result_framework_id');
+    }
     
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function dataCollections()
+    {
+        return $this->hasMany('App\Models\Indicator\IndicatorDataCollection', 'indicator_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contributers()
+    {
+        return $this->hasMany('App\Models\Indicator\IndicatorContribution', 'indicator_id', 'id');
+    }
 }

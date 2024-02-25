@@ -18,6 +18,23 @@ Route::prefix('/projects')->namespace('\App\Http\Controllers\Admin\Project')->gr
 
 /*
 |--------------------------------------------------------------------------
+| Results Framework Routes
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'prefix'     => 'result-frameworks',
+    'as'         => 'resultFrameworks.',
+    'controller' => ResultFrameworkController::class
+], function () {
+    Route::get('list',             		'index'      )->name('index'  	 );
+    Route::post('store',                'store'      )->name('store'  	 );
+    Route::post('update',               'update'     )->name('update' 	 );
+    Route::delete('delete/{id}',        'destroy'    )->name('destroy'	 );
+    Route::post('set-project',          'setProject' )->name('setProject');
+});
+
+/*
+|--------------------------------------------------------------------------
 | Indicators Route
 |--------------------------------------------------------------------------
 */

@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StakeholderSeeder::class);
         $this->call(SiteSeeder::class);
         $this->call(ProjectSeeder::class);
+        $this->call(IndicatorSeeder::class);
     }
 }

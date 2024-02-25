@@ -23,6 +23,14 @@
     </a>
 </li>
 @endcan
+@can('resultFrameworks-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('resultFrameworks*') ? 'active' : ''}}" href="{{ route('resultFrameworks.index') }}">
+        <i class="ph-tree-structure"></i>
+        <span>Results Framework</span>
+    </a>
+</li>
+@endcan
 @can('indicators-list')
 <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('indicators*') ? 'active' : ''}}" href="{{ route('indicators.index') }}">

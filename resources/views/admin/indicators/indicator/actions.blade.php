@@ -1,5 +1,14 @@
 @canany(['indicators-view', 'indicators-edit', 'indicators-delete'])
 <div class="d-inline-flex">
+    @if($indicator->aggregated == 'Yes')
+        <a href="{{ route('indicators.contributions.index',$indicator->id) }}" class="me-2">
+            <i class="ph-snowflake"></i>
+        </a>
+    @else
+        <a href="{{ route('indicators.data-collections.index',$indicator->id) }}" class="me-2">
+            <i class="ph-database"></i>
+        </a>
+    @endif
     <div class="dropdown">
         <a href="#" class="text-body" data-bs-toggle="dropdown">
             <i class="ph-list"></i>

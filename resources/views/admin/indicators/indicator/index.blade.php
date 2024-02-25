@@ -29,32 +29,108 @@
 @section('content')
 <div class="col-sm-12">
     <div class="card">
+        <div class="card-body">
+            {{ Form::select('project_id', projects(), $indicatorProjectId, ['class' => 'select','placeholder' => '--Select--','id'=>'indicatorsProject']) }}
+        </div>
+    </div>
+    @if(!empty($project))
+    <div class="card">
         <div class="card-header">
             <h5 class="mb-0">Indicator</h5>
         </div>
-        <table class="table datatable-basic">
-            <thead class="thead">
-                <tr>
-                    <th>No</th>
-					<th>Project</th>
-					<th>Name</th>
-					<th>Format</th>
-                    <th class="text-center">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach ($indicators as $key => $indicator)
-                <tr>
-                    <td>{{ ++$key }}</td>
-					<td>{{ $indicator->project->name }}</td>
-					<td>{{ $indicator->name }}</td>
-					<td>{{ $indicator->format }}</td>
-                    <td class="text-center">@include('admin.indicators.indicator.actions')</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table text-nowrap">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Format</th>
+                        <th>Collection Frequency</th>
+                        <th>Status</th>
+                        <th>Actual vs Target</th>
+                        <th class="text-center" style="width: 20px;"><i class="ph-dots-three"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-light">
+                        <td colspan="7" class="fw-semibold">Non-classified Indicators</td>
+                    </tr>
+                    @foreach($project->indicators()->whereNull('result_framework_id')->get() as $key =>$indicator)
+                        <tr>
+                            <td>{{ ++$key }}</td>
+                            <td>
+                                {{ $indicator->name }}
+                                @if($indicator->key_performance == 'Yes')
+                                <a href="#" class="badge bg-warning text-white rounded-pill p-1">
+                                    KPI
+                                </a>
+                                @endif
+                            </td>
+                            <td>{{ $indicator->format }}</td>
+                            <td>{{ $indicator->projectReportingPeriod->title ?? ''}}</td>
+                            <td>{{ $indicator->status }}</td>
+                            <td>
+                                @if($indicator->format != 'Qualitative Only' && $indicator->aggregated !='Yes')
+                                    @php($data = getIndicatorActualVsTarget($indicator))
+                                    {{ $data['stat'] }} 
+                                    <div class="progress">
+                                        <div class="progress-bar bg-teal" style="width: {{ $data['percentage'] }}%" aria-valuenow="{{ $data['percentage'] }}" aria-valuemin="0" aria-valuemax="100">{{ $data['percentage'] }}% complete</div>
+                                    </div>
+                                @endif
+                                @if($indicator->format != 'Qualitative Only' && $indicator->aggregated =='Yes')
+                                    @php($data = calculateAggregatedTarget($indicator))
+                                    {{ $data['stat'] }} 
+                                    <div class="progress">
+                                        <div class="progress-bar bg-teal" style="width: {{ $data['percentage'] }}%" aria-valuenow="{{ $data['percentage'] }}" aria-valuemin="0" aria-valuemax="100">{{ $data['percentage'] }}% complete</div>
+                                    </div>
+                                @endif
+                            </td>
+                            <th class="text-center">@include('admin.indicators.indicator.actions')</th>
+                        </tr>
+                    @endforeach
+                    @foreach($project->resultFrameworks as $framework)
+                        <tr class="table-light">
+                            <td colspan="7" class="fw-semibold">{{ $framework->title }}</td>
+                        </tr>
+                        @foreach($framework->indicators as $key =>$indicator)
+                            <tr>
+                                <td>{{ ++$key }}</td>
+                                <td>
+                                    {{ $indicator->name }}
+                                    @if($indicator->key_performance == 'Yes')
+                                    <a href="#" class="badge bg-warning text-white rounded-pill p-1">
+                                        KPI
+                                    </a>
+                                    @endif
+                                </td>
+                                <td>{{ $indicator->format }}</td>
+                                <td>{{ $indicator->projectReportingPeriod->title ?? ''}}</td>
+                                <td>{{ $indicator->status }}</td>
+                                <td>
+                                    @if($indicator->format != 'Qualitative Only' && $indicator->aggregated !='Yes')
+                                        @php($data = getIndicatorActualVsTarget($indicator))
+                                        {{ $data['stat'] }} 
+                                        <div class="progress">
+                                            <div class="progress-bar bg-teal" style="width: {{ $data['percentage'] }}%" aria-valuenow="{{ $data['percentage'] }}" aria-valuemin="0" aria-valuemax="100">{{ $data['percentage'] }}% complete</div>
+                                        </div>
+                                    @endif
+                                    @if($indicator->format != 'Qualitative Only' && $indicator->aggregated =='Yes')
+                                        @php($data = calculateAggregatedTarget($indicator))
+                                        {{ $data['stat'] }} 
+                                        <div class="progress">
+                                            <div class="progress-bar bg-teal" style="width: {{ $data['percentage'] }}%" aria-valuenow="{{ $data['percentage'] }}" aria-valuemin="0" aria-valuemax="100">{{ $data['percentage'] }}% complete</div>
+                                        </div>
+                                    @endif
+                                </td>
+                                <th class="text-center">@include('admin.indicators.indicator.actions')</th>
+                            </tr>
+                        @endforeach
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
+    @endif
 </div>
 @endsection
 
@@ -70,6 +146,7 @@
                 input: 'form-control'
             }
         });
+        $('.select').select2();
         $(".sa-confirm").click(function (event) {
             event.preventDefault();
             swalInit.fire({
@@ -86,6 +163,28 @@
                 }
             }).then((result) => {
                 if (result.value === true)  $(this).closest("form").submit();
+            });
+        });
+        var _token = $("input[name='_token']").val(); 
+        $('#indicatorsProject').on('change', function(){
+            var id = $(this).val();
+            $.ajax({
+                url: "{{ route('indicators.setProject') }}",
+                type: 'POST',
+                data: {
+                    id: id,
+                    _token: _token
+                },
+                success: function(response) {
+                    window.location.href = "{{ route('indicators.index') }}";
+                },
+                error: function(xhr, status, error) {
+                    new Noty({
+                        layout: 'bottomCenter',
+                        text: error,
+                        type: 'error'
+                    }).show();
+                }
             });
         });
     });

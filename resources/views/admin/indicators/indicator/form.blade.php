@@ -1,18 +1,28 @@
 <div class="row">
-    <div class="form-group col-lg-4 mb-3">
-        {{ Form::label('name') }}
-        {{ Form::text('name', $indicator->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Name','required']) }}
-        {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
+    <div class="form-group col-lg-2 mb-3">
+        {{ Form::label('indicator_number') }}
+        {{ Form::text('indicator_number', $indicator->indicator_number, ['class' => 'form-control' . ($errors->has('indicator_number') ? ' is-invalid' : ''), 'placeholder' => 'Indicator Number','required']) }}
     </div>
-    <div class="form-group col-lg-4 mb-3">
+    <div class="form-group col-lg-2 mb-3">
         {{ Form::label('format') }}
         {{ Form::select('format', ['Numeric'=>'Numeric','Percentage'=>'Percentage','Qualitative Only'=>'Qualitative Only'], $indicator->format, ['class' => 'form-control select' . ($errors->has('format') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required']) }}
-        {!! $errors->first('format', '<div class="invalid-feedback">:message</div>') !!}
+    </div>
+    <div class="form-group col-lg-8 mb-3">
+        {{ Form::label('name') }}
+        {{ Form::text('name', $indicator->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Name','required']) }}
+    </div>
+    <div class="form-group col-lg-4 mb-3">
+        {{ Form::label('result_framework_id','Results framework element') }}
+        {{ Form::select('result_framework_id', resultFrameworks($indicator->project_id), $indicator->result_framework_id, ['class' => 'form-control select' . ($errors->has('result_framework_id') ? ' is-invalid' : ''), 'placeholder' => '--Select--']) }}
     </div>
     <div class="form-group col-lg-4 mb-3">
         {{ Form::label('frequency') }}
-        {{ Form::select('frequency', [], $indicator->frequency, ['class' => 'form-control select' . ($errors->has('frequency') ? ' is-invalid' : ''), 'placeholder' => '--Select--']) }}
+        {{ Form::select('frequency', projectReportingPeriods($indicator->project_id), $indicator->frequency, ['class' => 'form-control select' . ($errors->has('frequency') ? ' is-invalid' : ''), 'placeholder' => '--Select--']) }}
         {!! $errors->first('frequency', '<div class="invalid-feedback">:message</div>') !!}
+    </div>
+    <div class="form-group col-lg-4 mb-3 pt-4">
+        {{ Form::checkbox('key_performance', 'Yes', $indicator->key_performance, ['class' => 'form-check-input' . ($errors->has('key_performance') ? ' is-invalid' : '')]) }}
+        {{ Form::label('key_performance','Key Performance Indicator') }}
     </div>
     <div class="form-group col-lg-12 mb-3">
         {{ Form::label('description') }}
