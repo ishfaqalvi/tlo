@@ -15,6 +15,10 @@
                             {{ Form::text('title', null, ['class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => 'Title','required', 'id'=>'editTitle']) }}
                         </div>
                         <div class="form-group col-lg-12 mb-3">
+                            {{ Form::label('description') }}
+                            {{ Form::textarea('description', null, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Description','required','rows'=>'2', 'id'=>'editDescription']) }}
+                        </div>
+                        <div class="form-group col-lg-12 mb-3">
                             {{ Form::label('order') }}
                             {{ Form::number('order', null, ['class' => 'form-control' . ($errors->has('order') ? ' is-invalid' : ''), 'placeholder' => 'Order','required','min'=>'1', 'id'=>'editOrder']) }}
                         </div>
@@ -42,10 +46,6 @@
                                     <label class="form-check-label" for="color4">Yellow</label>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group col-lg-12 mb-3">
-                            {{ Form::label('description') }}
-                            {{ Form::textarea('description', null, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Description','required','rows'=>'2', 'id'=>'editDescription']) }}
                         </div>
                     </div>
                 </div>

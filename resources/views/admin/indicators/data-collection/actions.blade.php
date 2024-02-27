@@ -9,7 +9,7 @@
                 @csrf
                 @method('DELETE')
                 @can('indicatorDataCollections-view')
-                    <a href="#" class="dropdown-item">
+                    <a href="{{ route('indicators.data-collections.show',$row->id)}}" class="dropdown-item">
                         <i class="ph-eye me-2"></i>{{ __('Show') }}
                     </a>
                 @endcan

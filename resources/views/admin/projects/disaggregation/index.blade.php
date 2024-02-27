@@ -51,7 +51,7 @@
 					<td>{{ $row->type }}</td>
 					<td>
                         @foreach($row->fields as $field)
-                            <span class="badge bg-success rounded-0">{{ $field }}</span>
+                            <span class="badge bg-success rounded-0">{{ $field->name }}</span>
                         @endforeach
                     </td>
                     <td class="text-center">@include('admin.projects.disaggregation.actions')</td>
@@ -150,7 +150,7 @@
             $('#typeField').val($(this).data('type'));
             $('#fields').empty();
             $.each($(this).data('fields'), function (i, val) {
-                $('#fields').append($('<option>',{selected : 'selected', value : val, text : val}));
+                $('#fields').append($('<option>',{selected : 'selected', value : val.name, text : val.name}));
             })
             $('#editModal').modal('show');
         });

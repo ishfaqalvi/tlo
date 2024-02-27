@@ -47,10 +47,28 @@ Route::group([
     'controller' => DataCollectionController::class
 ], function () {
     Route::get('list/{id}',             'index'     )->name('index'     );
+    Route::get('show/{id}',             'show'      )->name('show'      );
     Route::post('store',                'store'     )->name('store'     );
     Route::post('update',               'update'    )->name('update'    );
     Route::delete('delete/{id}',        'destroy'   )->name('destroy'   );
     Route::post('check_limit',          'checkLimit')->name('checklimit');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Data Disaggregation Routes
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'prefix'     => 'data-disaggregations',
+    'as'         => 'indicators.data-disaggregations.',
+    'controller' => DataDisaggregationController::class
+], function () {
+    Route::post('store',                'store'      )->name('store'      );
+    Route::post('update',               'update'     )->name('update'     );
+    Route::delete('delete/{id}',        'destroy'    )->name('destroy'    );
+    Route::post('check_record',         'checkRecord')->name('checkRecord');
+    Route::get('get-fields/{id}',       'getFields'  )->name('getFields'  );
 });
 
 /*

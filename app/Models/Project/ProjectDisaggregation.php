@@ -30,27 +30,7 @@ class ProjectDisaggregation extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['project_id','type','fields'];
-
-    /**
-     * The set attributes.
-     *
-     * @var array
-     */
-    public function setFieldsAttribute($value)
-    {
-        $this->attributes['fields'] = implode(',', $value);
-    }
-
-    /**
-     * The get attributes.
-     *
-     * @var array
-     */
-    public function getFieldsAttribute($value)
-    {
-        return explode(',', $value);
-    }
+    protected $fillable = ['project_id','type'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -58,5 +38,13 @@ class ProjectDisaggregation extends Model implements Auditable
     public function project()
     {
         return $this->hasOne('App\Models\Project', 'id', 'project_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function fields()
+    {
+        return $this->hasMany('App\Models\Project\ProjectDisaggregationField', 'disaggregation_id', 'id');
     }
 }

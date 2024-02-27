@@ -70,10 +70,15 @@ class PermissionSeeder extends Seeder
                   'indicatorTarget-link', 
                   'indicatorTarget-unlink',
 
-                  'indicatorDataCollections-list', 
+                  'indicatorDataCollections-list',
+                  'indicatorDataCollections-view', 
                   'indicatorDataCollections-create', 
-                  'indicatorDataCollections-edit', 
+                  'indicatorDataCollections-edit',
                   'indicatorDataCollections-delete',
+ 
+                  'indicatorDataDisaggregation-create', 
+                  'indicatorDataDisaggregation-edit', 
+                  'indicatorDataDisaggregation-delete',
 
                   'indicatorContributions-list', 
                   'indicatorContributions-create', 

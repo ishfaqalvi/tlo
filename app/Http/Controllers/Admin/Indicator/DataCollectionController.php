@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin\Indicator;
 use App\Http\Controllers\Controller;
 
 use App\Models\Indicator;
-use App\Models\Indicator\IndicatorDataCollection;
 use Illuminate\Http\Request;
+use App\Models\Indicator\{IndicatorDataCollection,IndicatorDataDisaggregation};
 
 /**
  * Class IndicatorDataCollectionController
@@ -21,7 +21,8 @@ class DataCollectionController extends Controller
     function __construct()
     {
         $this->middleware('permission:indicatorDataCollections-list',  ['only' => ['index']]);
-        $this->middleware('permission:indicatorDataCollections-create',['only' => ['create','store']]);
+        $this->middleware('permission:indicatorDataCollections-create',['only' => ['store']]);
+        $this->middleware('permission:indicatorDataCollections-view',['only' => ['show']]);
         $this->middleware('permission:indicatorDataCollections-edit',  ['only' => ['edit','update']]);
         $this->middleware('permission:indicatorDataCollections-delete',['only' => ['destroy']]);
     }
@@ -48,6 +49,20 @@ class DataCollectionController extends Controller
     {
         IndicatorDataCollection::create($request->all());
         return redirect()->back()->with('success', 'Data Collection added successfully!');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $dataCollect = IndicatorDataCollection::find($id);
+        $indicator   = $dataCollect->indicator;
+        $disaggregation = new IndicatorDataDisaggregation();
+
+        return view('admin.indicators.data-collection.show', compact('dataCollect','indicator','disaggregation'));
     }
 
     /**

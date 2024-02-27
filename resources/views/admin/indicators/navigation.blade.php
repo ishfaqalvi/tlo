@@ -16,9 +16,15 @@
     @if($indicator->aggregated != 'Yes' && auth()->user()->can('indicatorDataCollections-list'))
     <a 
         href="{{ route('indicators.data-collections.index',$indicator->id)}}" 
-        class="d-flex align-items-center text-body p-2 {{ request()->routeIs('indicators.data-collections*') ? 'active' : ''}}">
+        class="d-flex align-items-center text-body p-2 {{ request()->routeIs('indicators.data-collections.index*') ? 'active' : ''}}">
         <i class="ph-database me-1"></i>
         Collected Data
+    </a>
+    @endif
+    @if(request()->routeIs('indicators.data-collections.show*') && auth()->user()->can('indicatorDataCollections-view'))
+    <a href="" class="d-flex align-items-center text-body p-2 active">
+        <i class="ph-eye me-1"></i>
+        Collected Data Detail
     </a>
     @endif
     @if($indicator->aggregated == 'Yes' && auth()->user()->can('indicatorContributions-list'))

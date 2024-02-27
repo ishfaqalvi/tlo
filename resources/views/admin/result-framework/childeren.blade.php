@@ -30,7 +30,7 @@
         </div>
         <div class="card-body p-1">
             <div class="fw-bold"> {{ $parent->title }}</div>
-            <p class="fw-normal"> {{ $parent->description }}</p>
+            <p class="fw-normal" style="max-width: 200px; word-wrap: break-word;"> {{ $parent->description }}</p>
         </div>
     </div>
     @if ($parent->children->isNotEmpty())

@@ -46,7 +46,10 @@ class DisaggregationController extends Controller
      */
     public function store(Request $request)
     {
-        $projectDisaggregation = ProjectDisaggregation::create($request->all());
+        $disaggregation = ProjectDisaggregation::create($request->all());
+        foreach($request->fields as $title){
+            $disaggregation->fields()->create(['name' => $title]);
+        }
         return redirect()->back()->with('success', 'Disaggregation created successfully!');
     }
 
@@ -57,10 +60,14 @@ class DisaggregationController extends Controller
      * @param  ProjectDisaggregation $projectDisaggregation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProjectDisaggregation $projectDisaggregation)
+    public function update(Request $request)
     {
         $disaggregation = ProjectDisaggregation::find($request->id);
         $disaggregation->update($request->all());
+        $disaggregation->fields()->delete();
+        foreach($request->fields as $title){
+            $disaggregation->fields()->create(['name' => $title]);
+        }
 
         return redirect()->back()->with('success', 'Disaggregation updated successfully!');
     }

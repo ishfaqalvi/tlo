@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('project_disaggregations', function (Blueprint $table) {
+        Schema::create('project_disaggregation_fields', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id')->references('id')->on('projects')->cascadeOnDelete();
-            $table->string('type');
+            $table->foreignId('disaggregation_id')->references('id')->on('project_disaggregations')->cascadeOnDelete();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_disaggregations');
+        Schema::dropIfExists('project_disaggregation_fields');
     }
 };

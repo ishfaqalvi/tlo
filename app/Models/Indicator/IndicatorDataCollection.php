@@ -35,7 +35,15 @@ class IndicatorDataCollection extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['indicator_id','collected_value','date','identifier','site_id','evidence','notes'];
+    protected $fillable = [
+        'indicator_id',
+        'collected_value',
+        'date',
+        'identifier',
+        'site_id',
+        'evidence',
+        'notes'
+    ];
 
     /**
      * Interact with the date.
@@ -78,5 +86,13 @@ class IndicatorDataCollection extends Model implements Auditable
     public function site()
     {
         return $this->hasOne('App\Models\Site', 'id', 'site_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function dataDisaggregations()
+    {
+        return $this->hasMany('App\Models\Indicator\IndicatorDataDisaggregation', 'collection_id', 'id');
     }
 }

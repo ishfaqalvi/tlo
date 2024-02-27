@@ -35,5 +35,9 @@ class ProjectSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+        DB::table('project_sites')->insert([
+            'project_id' => 1,
+            'site_id'    => 1
+        ]);
     }
 }

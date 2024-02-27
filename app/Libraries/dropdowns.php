@@ -165,3 +165,19 @@ function contributerIndicators($indicator)
     $project = $indicator->project;
     return $project->indicators()->whereFormat($indicator->format)->whereNull('aggregated')->pluck('name','id');
 }
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function indicatorDisaggregations($id)
+{
+    return ProjectDisaggregation::select('project_disaggregations.*')
+        ->join(
+            'indicator_disaggregation_types',
+            'indicator_disaggregation_types.project_disaggregation_id',
+            '=',
+            'project_disaggregations.id')
+        ->where('indicator_disaggregation_types.indicator_id',$id)->pluck('type','id');
+}

@@ -132,7 +132,7 @@
                     <td>{{ $row->projectDisaggregation->type }}</td>
                     <td>
                         @foreach($row->projectDisaggregation->fields as $field)
-                            <span class="badge bg-success rounded-0">{{ $field }}</span>
+                            <span class="badge bg-success rounded-0">{{ $field->name }}</span>
                         @endforeach
                     </td>
                     <td class="text-center">
