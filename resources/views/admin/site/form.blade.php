@@ -1,8 +1,8 @@
 <div class="row">
     <div class="form-group col-lg-4 mb-3">
         {{ Form::label('type') }}
-        {{ Form::select('site_type_id', siteTypes(), $site->site_type_id, ['class' => 'form-control select' . ($errors->has('site_type_id') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required']) }}
-        {!! $errors->first('site_type_id', '<div class="invalid-feedback">:message</div>') !!}
+        {{ Form::select('thematic_area_id', thematicAreas(), $site->thematic_area_id, ['class' => 'form-control select' . ($errors->has('thematic_area_id') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required']) }}
+        {!! $errors->first('thematic_area_id', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-4 mb-3">
         {{ Form::label('province') }}

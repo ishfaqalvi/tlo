@@ -1,24 +1,24 @@
 @extends('admin.layout.app')
 
 @section('title')
-    Site Type
+    Thematic Area/Sector
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Site Type Management</span>
+            Home - <span class="fw-normal">Thematic Area/Sector Management</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
         <div class="d-sm-flex align-items-center mb-3 mb-lg-0 ms-lg-3">
-            @can('siteTypes-create')
-            <a href="{{ route('site-types.create') }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
+            @can('thematicArea-create')
+            <a href="{{ route('thematic-areas.create') }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-plus"></i>
                 </span>
-                Add Site Type
+                Add Thematic Area/Sector
             </a>
             @endcan
         </div>
@@ -30,7 +30,7 @@
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">Site Type</h5>
+            <h5 class="mb-0">Thematic Area/Sector</h5>
         </div>
         <table class="table datatable-basic">
             <thead class="thead">
@@ -43,13 +43,13 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach ($siteTypes as $key => $siteType)
+            @foreach ($thematicAreas as $key => $thematicArea)
                 <tr>
                     <td>{{ ++$key }}</td>
-					<td>{{ $siteType->title }}</td>
-					<td>{{ $siteType->creator->name }}</td>
-					<td>{{ $siteType->editor->name }}</td>
-                    <td class="text-center">@include('admin.catalog.site-type.actions')</td>
+					<td>{{ $thematicArea->title }}</td>
+					<td>{{ $thematicArea->creator->name }}</td>
+					<td>{{ $thematicArea->editor->name }}</td>
+                    <td class="text-center">@include('admin.catalog.thematic-area.actions')</td>
                 </tr>
             @endforeach
             </tbody>

@@ -66,17 +66,17 @@ Route::group([
 |--------------------------------------------------------------------------
 */
 Route::group([
-    'prefix'     => 'site-types',
-    'as'         => 'site-types.',
-    'controller' => SiteTypeController::class
+    'prefix'     => 'thematic-areas',
+    'as'         => 'thematic-areas.',
+    'controller' => ThematicAreaController::class
 ], function () {
-    Route::get('list',                 'index'  )->name('index'  );
-    Route::get('create',               'create' )->name('create' );
-    Route::post('store',               'store'  )->name('store'  );
-    Route::get('edit/{id}',            'edit'   )->name('edit'   );
-    Route::get('show/{id}',            'show'   )->name('show'   );
-    Route::patch('update/{siteType}',  'update' )->name('update' );
-    Route::delete('delete/{id}',       'destroy')->name('destroy');
+    Route::get('list',                      'index'  )->name('index'  );
+    Route::get('create',                    'create' )->name('create' );
+    Route::post('store',                    'store'  )->name('store'  );
+    Route::get('edit/{id}',                 'edit'   )->name('edit'   );
+    Route::get('show/{id}',                 'show'   )->name('show'   );
+    Route::patch('update/{thematicArea}',   'update' )->name('update' );
+    Route::delete('delete/{id}',            'destroy')->name('destroy');
 });
 
 /*

@@ -7,7 +7,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Wildside\Userstamps\Userstamps;
 /**
- * Class SiteType
+ * Class ThematicArea
  *
  * @property $id
  * @property $title
@@ -22,7 +22,7 @@ use Wildside\Userstamps\Userstamps;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class SiteType extends Model implements Auditable
+class ThematicArea extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
 
@@ -43,6 +43,6 @@ class SiteType extends Model implements Auditable
      */
     public function sites()
     {
-        return $this->hasMany('App\Models\Site', 'site_type_id', 'id');
+        return $this->hasMany('App\Models\Site', 'thematic_area_id', 'id');
     }   
 }

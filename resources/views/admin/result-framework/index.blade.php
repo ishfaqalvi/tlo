@@ -15,30 +15,35 @@
 @endsection
 
 @section('content')
-<div class="col-sm-12">
+<div class="col-sm-12 result-framework">
     <div class="card">
         <div class="card-body">
             {{ Form::select('project_id', projects(), $resultFrameworkProjectId, ['class' => 'select','placeholder' => '--Select--','id'=>'frameworkProject']) }}
         </div>
     </div>
     @if(!empty($project))
-        <div class="card">
-            <div class="card-header d-flex align-items-center">
-                <h6 class="mb-0">Results Framework</h6>
-                <div class="ms-auto">
-                    <div class="hstack gap-2">
-                        @can('resultFrameworks-create')
-                        <a href="#" data-parentid="" class="text-body addFramework">
-                            <i class="ph-plus-circle"></i>
+        <div class="tree text-center">
+            <ul>
+                <li>
+                    @if(auth()->user()->can('resultFrameworks-create'))
+                        <a href="#" data-parentid="" class="btn btn-info addFramework">
+                            Results Framework <i class="ph-plus-circle"></i>
                         </a>
-                        @endcan
-                    </div>
-                </div>
-            </div>
+                    @else
+                        <a href="#" class="btn btn-info">
+                            Results Framework
+                        </a>
+                    @endif
+                    @if($project->resultFrameworks()->whereNull('parent_id')->count() > 0)
+                    <ul>
+                        @foreach ($project->resultFrameworks()->whereNull('parent_id')->orderBy('order','ASC')->with('children')->get() as $parent)
+                            @include('admin.result-framework.childeren', ['parent' => $parent])
+                        @endforeach
+                    </ul>
+                    @endif
+                </li>
+            </ul>
         </div>
-        @foreach ($project->resultFrameworks()->whereNull('parent_id')->orderBy('order','ASC')->with('children')->get() as $parent)
-            @include('admin.result-framework.childeren', ['parent' => $parent])
-        @endforeach
     @endif
 </div>
 @include('admin.result-framework.create')
@@ -134,6 +139,7 @@
             $('#editId').val($(this).data('id'));
             $('#editTitle').val($(this).data('title'));
             $('#editOrder').val($(this).data('order'));
+            $('#editDescription').val($(this).data('description'));
             $('input[name="color"][value="' + $(this).data('color') + '"]').prop('checked', true);
             $('#editRecord').modal('show');
         });

@@ -1,7 +1,7 @@
 <div class="row">
     <div class="form-group col-lg-6 mb-3">
         {{ Form::label('title') }}
-        {{ Form::text('title', $siteType->title, ['class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => 'Title','required']) }}
+        {{ Form::text('title', $thematicArea->title, ['class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => 'Title','required']) }}
         {!! $errors->first('title', '<div class="invalid-feedback">:message</div>') !!}
     </div>
 	<div class="col-md-12 d-flex justify-content-end align-items-center mt-3">

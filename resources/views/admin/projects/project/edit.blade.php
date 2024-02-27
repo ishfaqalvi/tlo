@@ -50,7 +50,7 @@
         function iconFormat(icon) {
             var originalOption = icon.element;
             if (!icon.id) { return icon.text; }
-            var $icon = '<i class="ph-circle ' + $(icon.element).data('color') + '"></i>' + icon.text;
+            var $icon = '<i class="fas fa-circle fa-1x ' + $(icon.element).data('color') + '"></i>' + icon.text;
             return $icon;
         }
         $('.select-icons').select2({

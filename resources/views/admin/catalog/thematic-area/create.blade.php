@@ -1,19 +1,19 @@
 @extends('admin.layout.app')
 
 @section('title')
-    {{ __('Update') }} Site Type
+{{ __('Create') }} Thematic Area/Sector
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Site Type Management</span>
+            Home - <span class="fw-normal">Thematic Area/Sector Management</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
         <div class="d-sm-flex align-items-center mb-3 mb-lg-0 ms-lg-3">
-            <a href="{{ route('site-types.index') }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
+            <a href="{{ route('thematic-areas.index') }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-arrow-circle-left"></i>
                 </span>
@@ -28,13 +28,12 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">{{ __('Edit ') }} Site Type </h5>
+            <h5 class="mb-0">{{ __('Create') }} Thematic Area/Sector</h5>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('site-types.update', $siteType->id) }}" class="validate" role="form" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('thematic-areas.store') }}" class="validate" role="form" enctype="multipart/form-data">
                 @csrf
-                {{ method_field('PATCH') }}
-                @include('admin.catalog.site-type.form')
+                @include('admin.catalog.thematic-area.form')
             </form>
         </div>
     </div>

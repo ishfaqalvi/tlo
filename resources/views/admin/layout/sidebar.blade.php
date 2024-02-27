@@ -93,9 +93,9 @@
     </a>
 </li>
 @endcan
-@can('siteTypes-list')
+@can('thematicArea-list')
 <li class="nav-item">
-    <a class="nav-link {{ request()->routeIs('site-types*') ? 'active' : ''}}" href="{{ route('site-types.index') }}">
+    <a class="nav-link {{ request()->routeIs('thematic-areas*') ? 'active' : ''}}" href="{{ route('thematic-areas.index') }}">
         <i class="ph-list-dashes"></i>
         <span>Thematic Area/Sector</span>
     </a>

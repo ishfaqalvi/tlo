@@ -50,7 +50,7 @@
         function iconFormat(icon) {
             var originalOption = icon.element;
             if (!icon.id) { return icon.text; }
-            var $icon = '<i class="ph-circle ' + $(icon.element).data('color') + '"></i>' + icon.text;
+            var $icon = '<i class="fas fa-circle fa-1x ' + $(icon.element).data('color') + '"></i>' + icon.text;
             return $icon;
         }
         $('.select-icons').select2({
@@ -85,15 +85,15 @@
             },
             rules: {
                 start_date : {
-                    required:{function() { return $('#milestone').val() == 'Yes'; }}
+                    required:{function() { return $('#milestone').val() == ''; }}
                 }
             }
         });
         $('#milestone').on('change', function(){
             if(this.checked) {
-                $('div.sdate').show('slow');
-            }else{
                 $('div.sdate').hide('slow');
+            }else{
+                $('div.sdate').show('slow');
             }
         }).trigger('change');
         ['.start_date', '.end_date'].forEach(selector => {

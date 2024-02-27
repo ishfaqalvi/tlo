@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('site_type_id')->references('id')->on('site_types')->cascadeOnDelete();
+            $table->foreignId('thematic_area_id')->references('id')->on('thematic_areas')->cascadeOnDelete();
             $table->foreignId('province_id')->references('id')->on('provinces')->cascadeOnDelete();
             $table->string('name');
             $table->string('office');

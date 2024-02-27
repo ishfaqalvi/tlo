@@ -71,9 +71,9 @@ class CatalogSeeder extends Seeder
                 'updated_at' => now()
             ]
         ]);
-        DB::table('site_types')->insert([
+        DB::table('thematic_areas')->insert([
             [
-                'title'      => 'Default Site Type',
+                'title'      => 'Default Thematic Area',
                 'created_by' => 1,
                 'updated_by' => 1,
                 'created_at' => now(),

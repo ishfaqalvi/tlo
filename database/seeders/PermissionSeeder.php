@@ -137,11 +137,11 @@ class PermissionSeeder extends Seeder
                   'stakeholderRoles-edit', 
                   'stakeholderRoles-delete',
 
-                  'siteTypes-list', 
-                  'siteTypes-view', 
-                  'siteTypes-create', 
-                  'siteTypes-edit', 
-                  'siteTypes-delete',
+                  'thematicArea-list', 
+                  'thematicArea-view', 
+                  'thematicArea-create', 
+                  'thematicArea-edit', 
+                  'thematicArea-delete',
 
                   'activityProgress-list', 
                   'activityProgress-view', 

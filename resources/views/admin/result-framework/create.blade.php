@@ -44,6 +44,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group col-lg-12 mb-3">
+                            {{ Form::label('description') }}
+                            {{ Form::textarea('description', null, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Description','required','rows'=>'2']) }}
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

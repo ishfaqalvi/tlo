@@ -32,7 +32,7 @@ class ResultFramework extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['project_id','parent_id','title','color','order'];
+    protected $fillable = ['project_id','parent_id','title','color','order','description'];
 
 
     /**

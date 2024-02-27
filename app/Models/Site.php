@@ -40,7 +40,7 @@ class Site extends Model implements Auditable
      * @var array
      */
     protected $fillable = [
-        'site_type_id',
+        'thematic_area_id',
         'province_id',
         'name',
         'office',
@@ -71,8 +71,8 @@ class Site extends Model implements Auditable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function siteType()
+    public function thematicArea()
     {
-        return $this->hasOne('App\Models\Catalog\SiteType', 'id', 'site_type_id');
+        return $this->hasOne('App\Models\Catalog\ThematicArea', 'id', 'thematic_area_id');
     }
 }

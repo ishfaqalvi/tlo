@@ -25,8 +25,8 @@
                             {{ Form::text('name', null, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Name']) }}
                         </div>
                         <div class="form-group col-lg-4 mb-3">
-                            {{ Form::label('type') }}
-                            {{ Form::select('site_type_id', siteTypes(), null, ['class' => 'form-control select' . ($errors->has('site_type_id') ? ' is-invalid' : ''), 'placeholder' => '--Select--']) }}
+                            {{ Form::label('thematic_area_id','Thematic Area/Sector') }}
+                            {{ Form::select('thematic_area_id', thematicAreas(), null, ['class' => 'form-control select' . ($errors->has('thematic_area_id') ? ' is-invalid' : ''), 'placeholder' => '--Select--']) }}
                         </div>
                         <div class="form-group col-lg-4 mb-3">
                             {{ Form::label('status') }}

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('color');
             $table->integer('order')->default(1);
+            $table->text('description');
             $table->timestamps();
         });
     }

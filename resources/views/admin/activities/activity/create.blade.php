@@ -49,14 +49,14 @@
                         {!! $errors->first('milestone', '<div class="invalid-feedback">:message</div>') !!}
                         {{ Form::label('milestone', 'Milestone') }}
                     </div>
-                    <div class="form-group col-lg-4 mb-3 sdate" style="display: none;">
+                    <div class="form-group col-lg-4 mb-3 sdate">
                         {{ Form::label('start_date') }}
                         {{ Form::text('start_date', $activity->start_date, ['class' => 'form-control start_date' . ($errors->has('start_date') ? ' is-invalid' : ''), 'placeholder' => 'Start Date']) }}
                         {!! $errors->first('start_date', '<div class="invalid-feedback">:message</div>') !!}
                     </div>
-                    <div class="form-group col-lg-4 mb-3 edate" style="display: none;">
+                    <div class="form-group col-lg-4 mb-3">
                         {{ Form::label('end_date') }}
-                        {{ Form::text('end_date', $activity->end_date, ['class' => 'form-control end_date' . ($errors->has('end_date') ? ' is-invalid' : ''), 'placeholder' => 'End Date']) }}
+                        {{ Form::text('end_date', $activity->end_date, ['class' => 'form-control end_date' . ($errors->has('end_date') ? ' is-invalid' : ''), 'placeholder' => 'End Date','required']) }}
                         {!! $errors->first('end_date', '<div class="invalid-feedback">:message</div>') !!}
                     </div>
                     <div class="col-md-12 d-flex justify-content-end align-items-center mt-3">
@@ -100,20 +100,15 @@
             },
             rules: {
                 start_date : {
-                    required:{function() { return $('#milestone').val() == 'Yes'; }}
-                },
-                end_date : {
-                    required:{function() { return $('#milestone').val() == 'Yes'; }}
+                    required:{function() { return $('#milestone').val() == ''; }}
                 }
             }
         });
         $('#milestone').on('change', function(){
             if(this.checked) {
-                $('div.sdate').show('slow');
-                $('div.edate').show('slow');
-            }else{
                 $('div.sdate').hide('slow');
-                $('div.edate').hide('slow');
+            }else{
+                $('div.sdate').show('slow');
             }
         });
         ['.start_date', '.end_date'].forEach(selector => {

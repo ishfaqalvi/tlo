@@ -16,7 +16,7 @@ class SiteSeeder extends Seeder
     public function run()
     {
         DB::table('sites')->insert([
-            'site_type_id' => 1,
+            'thematic_area_id' => 1,
             'province_id' => 1,
             'name' => 'Sample Site',
             'office' => 'Main Office',

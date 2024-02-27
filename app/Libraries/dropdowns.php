@@ -2,7 +2,7 @@
 
 use App\Models\{Project,User,Stakeholder,Site,Indicator,ResultFramework};
 use App\Models\Project\{ProjectPhase,ProjectReportingPeriod,ProjectDisaggregation};
-use App\Models\Catalog\{Category,Province,StakeholderRole,SiteType,ActivityProgress};
+use App\Models\Catalog\{Category,Province,StakeholderRole,ThematicArea,ActivityProgress};
 
 /**
  * Get listing of a resource.
@@ -39,9 +39,9 @@ function stakeholderRoles()
  *
  * @return \Illuminate\Http\Response
  */
-function siteTypes()
+function thematicAreas()
 {
-    return SiteType::pluck('title','id');
+    return ThematicArea::pluck('title','id');
 }
 
 /**

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('site_types', function (Blueprint $table) {
+        Schema::create('thematic_areas', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->unsignedBigInteger('created_by')->nullable();

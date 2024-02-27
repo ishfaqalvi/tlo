@@ -1,24 +1,24 @@
-@canany(['siteTypes-view', 'siteTypes-edit', 'siteTypes-delete'])
+@canany(['thematicArea-view', 'thematicArea-edit', 'thematicArea-delete'])
 <div class="d-inline-flex">
     <div class="dropdown">
         <a href="#" class="text-body" data-bs-toggle="dropdown">
             <i class="ph-list"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-end">
-            <form action="{{ route('site-types.destroy',$siteType->id) }}" method="POST">
+            <form action="{{ route('thematic-areas.destroy',$thematicArea->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                @can('siteTypes-view')
-                    <a href="{{ route('site-types.show',$siteType->id) }}" class="dropdown-item">
+                @can('thematicArea-view')
+                    <a href="{{ route('thematic-areas.show',$thematicArea->id) }}" class="dropdown-item">
                         <i class="ph-eye me-2"></i>{{ __('Show') }}
                     </a>
                 @endcan
-                @can('siteTypes-edit')
-                    <a href="{{ route('site-types.edit',$siteType->id) }}" class="dropdown-item">
+                @can('thematicArea-edit')
+                    <a href="{{ route('thematic-areas.edit',$thematicArea->id) }}" class="dropdown-item">
                         <i class="ph-note-pencil me-2"></i>{{ __('Edit') }}
                     </a>
                 @endcan
-                @can('siteTypes-delete')
+                @can('thematicArea-delete')
                     <button type="submit" class="dropdown-item sa-confirm">
                         <i class="ph-trash me-2"></i>{{ __('Delete') }}
                     </button>

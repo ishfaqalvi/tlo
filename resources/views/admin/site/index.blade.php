@@ -37,7 +37,7 @@
                 <tr>
                     <th>No</th>
                     <th>Name</th>
-                    <th>Site Type</th>
+                    <th>Thematic Area</th>
                     <th>Province</th>
                     <th>Office</th>
                     <th>Contact Name</th>
@@ -51,7 +51,7 @@
                     <tr>
                         <td>{{ ++$key }}</td>
                         <td>{{ $site->name }}</td>
-                        <td>{{ $site->siteType->title }}</td>
+                        <td>{{ $site->thematicArea->title }}</td>
                         <td>{{ $site->province->title }}</td>
                         <td>{{ $site->office }}</td>
                         <td>{{ $site->contact_name }}</td>

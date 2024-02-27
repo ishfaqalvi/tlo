@@ -51,7 +51,13 @@
                     <td>{{ ++$key }}</td>
 					<td>{{ $activity->project->name }}</td>
                     <td>
-                        {{ $activity->name }}
+                        @if(auth()->user()->can('activities-edit'))
+                            <a href="{{ route('activities.edit',$activity->id) }}">
+                                {{ $activity->name }}
+                            </a>
+                        @else
+                            {{ $activity->name }}
+                        @endif
                         @if($activity->milestone == 'Yes')
                         <a href="#" class="badge bg-warning text-white rounded-pill p-1">
                             M
@@ -61,7 +67,15 @@
 					<td>{{ !empty($activity->start_date) ? date('d M Y', $activity->start_date) : ''}}</td>
 					<td>{{ !empty($activity->end_date) ? date('d M Y', $activity->end_date) : ''}}</td>
 					<td>{{ $activity->progress }}</td>
-					<td>{{ $activity->status }}</td>
+					<td>
+                        @if($activity->status == 'Green')
+                            <i class="fas fa-circle me-3 fa-1x text-success" title="{{ $activity->status }}"></i>
+                        @elseif($activity->status == 'Amber')
+                            <i class="fas fa-circle me-3 fa-1x text-warning" title="{{ $activity->status }}"></i>
+                        @elseif($activity->status == 'Red')
+                            <i class="fas fa-circle me-3 fa-1x text-danger" title="{{ $activity->status }}"></i>
+                        @endif
+                    </td>
                     <td class="text-center">@include('admin.activities.activity.actions')</td>
                 </tr>
             @endforeach
