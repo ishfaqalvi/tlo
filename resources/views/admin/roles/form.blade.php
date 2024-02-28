@@ -9,7 +9,7 @@
         @foreach($permissionGroup as $key => $permissions)
             <div class="col-lg-6">
                 <div class="mb-3">
-                    <p class="fw-semibold">{{ ucfirst($key) }}</p>
+                    <p class="fw-semibold">{{ ucfirst(preg_replace('/(?<!\ )[A-Z]/', ' $0', $key)) }}</p>
                     <div class="border px-3 pt-3 pb-2 rounded">
                         <div class="row">
                             @foreach($permissions as $permission)
