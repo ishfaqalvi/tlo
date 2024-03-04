@@ -79,7 +79,11 @@ class DisaggregationController extends Controller
      */
     public function destroy($id)
     {
-        ProjectDisaggregation::find($id)->delete();
+        $project = ProjectDisaggregation::find($id);
+        if($project->fields()->count() > 0){
+            return redirect()->back()->with('warning', 'Opps! data exist against this record');
+        }
+        $project->delete(); 
 
         return redirect()->back()->with('success', 'Disaggregation deleted successfully!');
     }

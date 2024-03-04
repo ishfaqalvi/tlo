@@ -49,12 +49,11 @@ class Project extends Model implements Auditable
      * @var array
      */
     protected $fillable = [
-        'code',
+        'project_contract_number',
         'name',
         'stage',
         'start_date',
         'end_date',
-        'province_id',
         'assigned_to',
         'category_id',
         'funding',
@@ -65,17 +64,37 @@ class Project extends Model implements Auditable
     ];
 
     /**
-     * Attributes that should auto genereted.
+     * Scope a query to filter product.
      *
-     * @var array
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $category
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public static function boot()
+    public function scopeFilter($query, $request)
     {
-        parent::boot();
-        self::created(function ($model) { 
-            $model->code = 'PR-' . str_pad($model->id, 6, "0", STR_PAD_LEFT);
-            $model->save();
-        });
+        if (isset($request['category_id'])) {
+            $query->whereCategoryId($request['category_id']);
+        }
+        if (isset($request['assigned_to'])) {
+            $query->whereAssignedTo($request['assigned_to']);
+        }
+        if (isset($request['stage'])) {
+            $query->whereStage($request['stage']);
+        }
+        if (isset($request['status'])) {
+            $query->whereStatus($request['status']);
+        }
+        if (isset($request['donnor'])) {
+            $query->whereDonnor($request['donnor']);
+        }
+        if (isset($request['partner'])) {
+            $query->wherePartner($request['partner']);
+        }
+        if (isset($request['search'])) {
+            $query->where('name', 'like', '%'.$request['search'].'%')
+            ->orWhere('description', 'like', '%'.$request['search'].'%');
+        }
+        return $query;
     }
 
     /**
@@ -95,11 +114,11 @@ class Project extends Model implements Auditable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * Interact with the date.
      */
-    public function province()
+    public function setProvinceIdAttribute($value)
     {
-        return $this->hasOne('App\Models\Catlog\Province', 'id', 'province_id');
+        $this->attributes['province_id'] = implode(',',$value);
     }
 
     /**
@@ -107,7 +126,7 @@ class Project extends Model implements Auditable
      */
     public function category()
     {
-        return $this->hasOne('App\Models\Catlog\Category', 'id', 'category_id');
+        return $this->hasOne('App\Models\Catalog\Category', 'id', 'category_id');
     }
     
     /**
@@ -120,6 +139,13 @@ class Project extends Model implements Auditable
 
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function provinces()
+    {
+        return $this->hasMany('App\Models\Project\ProjectProvince', 'project_id', 'id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

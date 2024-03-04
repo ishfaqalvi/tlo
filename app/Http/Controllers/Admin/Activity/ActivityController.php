@@ -31,11 +31,12 @@ class ActivityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $activities = Activity::get();
+        $activities = Activity::filter($request->all())->get();
+        $request->method() == 'POST' ? $userRequest = $request : $userRequest = null;
 
-        return view('admin.activities.activity.index', compact('activities'));
+        return view('admin.activities.activity.index', compact('activities','userRequest'));
     }
 
     /**

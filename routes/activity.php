@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::group(['as' => 'activities.', 'controller' => ActivityController::class], function () {
-    Route::post('store',                'store'      )->name('store'  );
     Route::get('list',                  'index'      )->name('index'  );
+    Route::post('list',                 'index'      )->name('filter' );
+    Route::post('store',                'store'      )->name('store'  );
     Route::get('create',                'create'     )->name('create' );
     Route::get('edit/{id}',             'edit'       )->name('edit'   );
     Route::get('show/{id}',             'show'       )->name('show'   );
@@ -91,7 +92,8 @@ Route::group([
     'as'         => 'activities.indicators.',
     'controller' => IndicatorController::class
 ], function () {
-    Route::get('list/{id}',           'index'  )->name('index'  );
-    Route::post('store',              'store'  )->name('store'  );
-    Route::delete('delete/{id}',      'destroy')->name('destroy');
+    Route::get('list/{id}',         'index'      )->name('index'      );
+    Route::post('store',            'store'      )->name('store'      );
+    Route::delete('delete/{id}',    'destroy'    )->name('destroy'    );
+    Route::post('check_record',     'checkRecord')->name('checkRecord');
 });

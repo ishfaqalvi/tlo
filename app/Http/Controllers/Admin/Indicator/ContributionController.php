@@ -56,7 +56,7 @@ class ContributionController extends Controller
      */
     public function destroy($id)
     {
-        $indicatorContribution = IndicatorContribution::find($id)->delete();
+        $contribution = IndicatorContribution::find($id)->delete();
 
         return redirect()->back()->with('success', 'Indicator removed successfully.');
     }

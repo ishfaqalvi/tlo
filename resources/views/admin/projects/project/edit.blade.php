@@ -109,6 +109,19 @@
                 ]
             }
         }).catch(console.error);
+        $('select[name="stage"]').change(function() {
+            var stage = $(this).val();
+            var projectStatus = '';
+
+            if (['Pipeline/Identification', 'Implementation', 'Finalisation'].includes(stage)) {
+                projectStatus = 'Amber';
+            } else if (['Inprogress', 'On Track'].includes(stage)) {
+                projectStatus = 'Green';
+            } else if (['Delays', 'Closed', 'Cancelled', 'Suspended'].includes(stage)) {
+                projectStatus = 'Red';
+            }
+            $('#projectStatus').val(projectStatus).trigger('change');
+        });
     });
 </script>
 @endsection

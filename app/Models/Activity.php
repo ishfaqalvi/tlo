@@ -39,7 +39,46 @@ class Activity extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['project_id','phase_id','assign_to','name','milestone','start_date','end_date','progress','status','description'];
+    protected $fillable = [
+        'project_id',
+        'phase_id',
+        'assign_to',
+        'name',
+        'milestone',
+        'start_date',
+        'end_date',
+        'progress',
+        'status',
+        'description'
+    ];
+
+    /**
+     * Scope a query to filter product.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $category
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilter($query, $request)
+    {
+        if (isset($request['project_id'])) {
+            $query->whereProjectId($request['project_id']);
+        }
+        if (isset($request['assign_to'])) {
+            $query->whereAssignTo($request['assign_to']);
+        }
+        if (isset($request['status'])) {
+            $query->whereStatus($request['status']);
+        }
+        if (isset($request['progress'])) {
+            $query->whereProgress($request['progress']);
+        }
+        if (isset($request['search'])) {
+            $query->where('name', 'like', '%'.$request['search'].'%')
+            ->orWhere('description', 'like', '%'.$request['search'].'%');
+        }
+        return $query;
+    }
 
      /**
      * Interact with the date.

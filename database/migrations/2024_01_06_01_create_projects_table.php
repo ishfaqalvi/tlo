@@ -15,19 +15,21 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->nullable();
+            $table->string('project_contract_number')->nullable();
             $table->string('name');
             $table->enum('stage',[
                 'Pipeline/Identification',
                 'Implementation',
                 'Finalisation',
+                'Inprogress',
+                'On Track',
+                'Delays',
                 'Closed',
                 'Cancelled',
                 'Suspended'
             ])->nullable();
             $table->bigInteger('start_date');
             $table->bigInteger('end_date');
-            $table->foreignId('province_id')->nullable()->references('id')->on('provinces')->cascadeOnDelete();
             $table->foreignId('assigned_to')->nullable()->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('category_id')->nullable()->references('id')->on('categories')->cascadeOnDelete();
             $table->string('funding')->nullable();

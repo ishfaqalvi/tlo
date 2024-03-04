@@ -144,7 +144,7 @@
                         },
                     }
                 }
-            },
+            }, 
             messages:{
                 email:{
                     required: "Please enter a valid email address.",

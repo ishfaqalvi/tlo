@@ -12,7 +12,7 @@
                         {{ Form::hidden('activity_id', $activity->id) }}
                         <div class="form-group col-lg-12">
                             {{ Form::label('indicator') }}
-                            {{ Form::select('indicator_id', indicators($activity->project_id), null, ['class' => 'form-control select' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required']) }}
+                            {{ Form::select('indicator_id', indicators($activity->project_id), null, ['class' => 'form-control select' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required','id'=>'indicator_id']) }}
                         </div>
                     </div>
                 </div>

@@ -83,4 +83,16 @@ class TargetController extends Controller
 
         return redirect()->back()->with('success', 'Reporting Period unlinked successfully.');
     }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function disaggregationDestroy($id)
+    {
+        IndicatorDisaggregationType::find($id)->delete();
+
+        return redirect()->back()->with('success', 'Disaggregation unlinked successfully.');
+    }
 }

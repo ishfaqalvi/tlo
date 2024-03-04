@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['as' => 'projects.', 'controller' => ProjectController::class], function () {
     Route::get('list',                 'index'  )->name('index'  );
+    Route::post('list',                'index'  )->name('filter' );
     Route::get('create',               'create' )->name('create' );
     Route::post('store',               'store'  )->name('store'  );
     Route::get('edit/{id}',            'edit'   )->name('edit'   );

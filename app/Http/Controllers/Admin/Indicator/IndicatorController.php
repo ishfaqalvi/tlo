@@ -126,9 +126,14 @@ class IndicatorController extends Controller
      */
     public function destroy($id)
     {
-        $indicator = Indicator::find($id)->delete();
+        $indicator = Indicator::find($id);
+        if ($indicator->dataCollections()->count() > 0 || $indicator->dataCollections()->contributers() > 0) {
+            return redirect()->route('indicators.index')
+            ->with('warning', 'Opps! this record contain data.');
+        }
+        $indicator->delete();
 
         return redirect()->route('indicators.index')
-            ->with('success', 'Indicator deleted successfully');
+            ->with('success', 'Indicator deleted successfully.');
     }
 }

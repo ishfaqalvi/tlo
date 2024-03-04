@@ -87,7 +87,11 @@ class DataCollectionController extends Controller
      */
     public function destroy($id)
     {
-        IndicatorDataCollection::find($id)->delete();
+        $dataCollect = IndicatorDataCollection::find($id);
+        if ($dataCollect->dataDisaggregations()->count() > 0) {
+            return redirect()->back()->with('warning', 'Opps! this record contain data.');    
+        }
+        $dataCollect->delete();
 
         return redirect()->back()->with('success', 'Data Collection deleted successfully.');
     }

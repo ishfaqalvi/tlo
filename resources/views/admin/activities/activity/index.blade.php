@@ -13,6 +13,12 @@
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
         <div class="d-sm-flex align-items-center mb-3 mb-lg-0 ms-lg-3">
+            <button class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill me-2 collapsed" data-bs-toggle="collapse" data-bs-target="#filters" aria-expanded="true">
+                <span class="btn-labeled-icon bg-primary text-white rounded-pill">
+                    <i class="ph-funnel"></i>
+                </span>
+                Filter
+            </button>
             @can('activities-create')
             <a href="{{ route('activities.create') }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
@@ -28,6 +34,14 @@
 
 @section('content')
 <div class="col-sm-12">
+    <div class="card collapse {{ !is_null($userRequest) ? 'show' : ''}}" id="filters">
+        <div class="card-body">
+            <form action="{{route('activities.filter')}}" method="post">
+                @csrf
+                @include('admin.activities.activity.filter')
+            </form>
+        </div>
+    </div>
     <div class="card">
         <div class="card-header">
             <h5 class="mb-0">Activity</h5>
@@ -115,6 +129,19 @@
                 if (result.value === true)  $(this).closest("form").submit();
             });
         });
+        function iconFormat(icon) {
+            var originalOption = icon.element;
+            if (!icon.id) { return icon.text; }
+            var $icon = '<i class="fas fa-circle fa-1x ' + $(icon.element).data('color') + '"></i>' + icon.text;
+            return $icon;
+        }
+        $('.select-icons').select2({
+            templateResult: iconFormat,
+            minimumResultsForSearch: Infinity,
+            templateSelection: iconFormat,
+            escapeMarkup: function(m) { return m; }
+        });
+        $('.select').select2();
     });
 </script>
 @endsection

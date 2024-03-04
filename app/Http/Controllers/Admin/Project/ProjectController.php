@@ -31,11 +31,12 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::get();
+        $projects = Project::filter($request->all())->get();
+        $request->method() == 'POST' ? $userRequest = $request : $userRequest = null;
 
-        return view('admin.projects.project.index', compact('projects'));
+        return view('admin.projects.project.index', compact('projects','userRequest'));
     }
 
     /**
@@ -98,6 +99,12 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $project->update($request->all());
+        if ($request->provinces) {
+            $project->provinces()->delete();
+            foreach($request->provinces as $id){
+                $project->provinces()->create(['province_id' => $id]);
+            }
+        }
 
         return redirect()->back()->with('success', 'Project updated successfully!');
     }

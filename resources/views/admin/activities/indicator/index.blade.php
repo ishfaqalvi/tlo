@@ -118,6 +118,52 @@
                 if (result.value === true)  $(this).closest("form").submit();
             });
         });
+        const _token = $("input[name='_token']").val();
+        $('.createRecord').validate({
+            errorClass: 'validation-invalid-label',
+            successClass: 'validation-valid-label',
+            validClass: 'validation-valid-label',
+            highlight: function(element, errorClass) {
+                $(element).removeClass(errorClass);
+                $(element).addClass('is-invalid');
+                $(element).removeClass('is-valid');
+            },
+            unhighlight: function(element, errorClass) {
+                $(element).removeClass(errorClass);
+                $(element).removeClass('is-invalid');
+                $(element).addClass('is-valid');
+            },
+            errorPlacement: function(error, element) {
+                if (element.hasClass('select2-hidden-accessible')) {
+                    error.appendTo(element.parent());
+                }else if (element.parents().hasClass('form-control-feedback') || element.parents().hasClass('form-check') || element.parents().hasClass('input-group')) {
+                    error.appendTo(element.parent().parent());
+                }else {
+                    error.insertAfter(element);
+                }
+            }, 
+            rules: {
+                indicator_id: {
+                    remote: remoteSettings('#indicator_id')
+                }
+            },
+            messages:{
+                indicator_id:{
+                    remote: jQuery.validator.format("This indicator is already added.")
+                }
+            }
+        });
+        function remoteSettings(elementId) {
+            return {
+                url: "{{ route('activities.indicators.checkRecord') }}",
+                type: "POST",
+                data: {
+                    _token,
+                    activity_id: "{{ $activity->id }}",
+                    indicator_id: function() { return $(elementId).val(); }
+                },
+            };
+        }
     });
 </script>
 @endsection
