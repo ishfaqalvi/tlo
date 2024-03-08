@@ -63,7 +63,23 @@
     </a>
 </li>
 @endcan
-@canany(['categories-list', 'provinces-list','stakeholderRoles-list','siteTypes-list','activityProgress-list'])
+@can('beneficiaries-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('beneficiaries*') ? 'active' : ''}}" href="{{ route('beneficiaries.index') }}">
+        <i class="ph-users-three"></i>
+        <span>Beneficiaries</span>
+    </a>
+</li>
+@endcan
+@can('feadbacks-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('feadbacks*') ? 'active' : ''}}" href="{{ route('feadbacks.index') }}">
+        <i class="ph-chat-centered-text"></i>
+        <span>Feadbacks</span>
+    </a>
+</li>
+@endcan
+@canany(['categories-list', 'provinces-list','stakeholderRoles-list','siteTypes-list','complaintTypes-list'])
 <li class="nav-item-header">
     <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Catalog Management</div>
     <i class="ph-dots-three sidebar-resize-show"></i>
@@ -101,11 +117,11 @@
     </a>
 </li>
 @endcan
-@can('activityProgress-list')
+@can('complaintTypes-list')
 <li class="nav-item">
-    <a class="nav-link {{ request()->routeIs('activity-progresses*') ? 'active' : ''}}" href="{{ route('activity-progresses.index') }}">
+    <a class="nav-link {{ request()->routeIs('complaint-types*') ? 'active' : ''}}" href="{{ route('complaint-types.index') }}">
         <i class="ph-list-dashes"></i>
-        <span>Activity Progress</span>
+        <span>Complaint Types</span>
     </a>
 </li>
 @endcan

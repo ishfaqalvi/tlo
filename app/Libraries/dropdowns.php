@@ -2,7 +2,7 @@
 
 use App\Models\{Project,User,Stakeholder,Site,Indicator,ResultFramework};
 use App\Models\Project\{ProjectPhase,ProjectReportingPeriod,ProjectDisaggregation};
-use App\Models\Catalog\{Category,Province,StakeholderRole,ThematicArea,ActivityProgress};
+use App\Models\Catalog\{Category,Province,StakeholderRole,ThematicArea,ComplaintType};
 
 /**
  * Get listing of a resource.
@@ -49,9 +49,9 @@ function thematicAreas()
  *
  * @return \Illuminate\Http\Response
  */
-function activityProgress()
+function complaintTypes()
 {
-    return ActivityProgress::pluck('title','id');
+    return ComplaintType::get();
 }
 
 /**

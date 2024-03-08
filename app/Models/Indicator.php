@@ -59,6 +59,21 @@ class Indicator extends Model implements Auditable
     ];
 
     /**
+     * Scope a query to filter product.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $category
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilter($query, $request)
+    {
+        if (isset($request['project_id'])) {
+            $query->whereProjectId($request['project_id']);
+        }
+        return $query;
+    }
+
+    /**
      * Interact with the date.
      */
     public function setBaselineDateAttribute($value)

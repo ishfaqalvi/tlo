@@ -87,6 +87,46 @@ Route::group([
 
 /*
 |--------------------------------------------------------------------------
+| Beneficiaries Route
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'prefix'     => 'beneficiaries',
+    'as'         => 'beneficiaries.',
+    'controller' => BeneficiaryController::class
+], function () {
+    Route::get('list',                      'index'  )->name('index'  );
+    Route::get('create',                    'create' )->name('create' );
+    Route::post('store',                    'store'  )->name('store'  );
+    Route::post('import',                   'import' )->name('import' );
+    Route::get('edit/{id}',                 'edit'   )->name('edit'	  );
+    Route::get('show/{id}',                 'show'   )->name('show'	  );
+    Route::patch('update/{beneficiary}',	'update' )->name('update' );
+    Route::delete('delete/{id}',            'destroy')->name('destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Feadbacks Route
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'prefix'     => 'feadbacks',
+    'as'         => 'feadbacks.',
+    'controller' => FeadbackController::class
+], function () {
+    Route::get('list',                      'index'  )->name('index'  );
+    Route::get('create',                    'create' )->name('create' );
+    Route::post('store',                    'store'  )->name('store'  );
+    Route::post('import',                   'import' )->name('import' );
+    Route::get('edit/{id}',                 'edit'   )->name('edit'   );
+    Route::get('show/{id}',                 'show'   )->name('show'   );
+    Route::patch('update/{feadback}',       'update' )->name('update' );
+    Route::delete('delete/{id}',            'destroy')->name('destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
 | Config Route
 |--------------------------------------------------------------------------
 */

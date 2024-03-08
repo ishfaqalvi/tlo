@@ -80,11 +80,46 @@ class CatalogSeeder extends Seeder
                 'updated_at' => now()
             ]
         ]);
-        DB::table('activity_progress')->insert([
+        DB::table('complaint_types')->insert([
             [
-                'title'      => 'Default Activity Progress',
-                'created_by' => 1,
-                'updated_by' => 1,
+                'title'      => 'Request for information',
+                'type'       => 'Insensitive',
+                'deadline'   => 15,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title'      => 'Request for Assistant',
+                'type'       => 'Insensitive',
+                'deadline'   => 15,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title'      => 'Major dissatisfaction with activities and behavior of staff (missing items from kits, lack follow up etc.)',
+                'type'       => 'Insensitive',
+                'deadline'   => 15,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title'      => 'Major dissatisfaction with activities.',
+                'type'       => 'Insensitive',
+                'deadline'   => 15,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title'      => 'Breaches of TLO code of conduct or chilled or women safeguarding policy. ',
+                'type'       => 'Sensitive',
+                'deadline'   => 15,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'title'      => 'Allegation of chilled abuse or sexual exploitation of beneficiaries.',
+                'type'       => 'Sensitive',
+                'deadline'   => 15,
                 'created_at' => now(),
                 'updated_at' => now()
             ]

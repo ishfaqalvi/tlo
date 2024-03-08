@@ -13,6 +13,12 @@
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
         <div class="d-sm-flex align-items-center mb-3 mb-lg-0 ms-lg-3">
+            <button class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill me-2 collapsed" data-bs-toggle="collapse" data-bs-target="#filters" aria-expanded="true">
+                <span class="btn-labeled-icon bg-primary text-white rounded-pill">
+                    <i class="ph-funnel"></i>
+                </span>
+                Filter
+            </button>
             @can('indicators-create')
             <a href="{{ route('indicators.create') }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
@@ -28,12 +34,14 @@
 
 @section('content')
 <div class="col-sm-12">
-    <div class="card">
+    <div class="card collapse {{ !is_null($userRequest) ? 'show' : ''}}" id="filters">
         <div class="card-body">
-            {{ Form::select('project_id', projects(), $indicatorProjectId, ['class' => 'select','placeholder' => '--Select--','id'=>'indicatorsProject']) }}
+            <form action="{{route('indicators.filter')}}" method="post">
+                @csrf
+                @include('admin.indicators.indicator.filter')
+            </form>
         </div>
     </div>
-    @if(!empty($project))
     <div class="card">
         <div class="card-header">
             <h5 class="mb-0">Indicator</h5>
@@ -52,20 +60,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="table-light">
-                        <td colspan="7" class="fw-semibold">Non-classified Indicators</td>
-                    </tr>
-                    @foreach($project->indicators()->whereNull('result_framework_id')->get() as $key =>$indicator)
+                    @foreach($groupedIndicators as $key1 => $group)
+                        <tr class="table-light">
+                            <td colspan="7" class="fw-semibold">{{ $key1 }}</td>
+                        </tr>
+                        @foreach($group as $key2 => $indicator)
                         <tr>
-                            <td>{{ ++$key }}</td>
+                            <td>{{ ++$key2 }}</td>
                             <td>
-                                @if(auth()->user()->can('indicators-edit'))
-                                    <a href="{{ route('indicators.edit',$indicator->id) }}">
-                                        {{ $indicator->name }}
-                                    </a>
-                                @else
-                                    {{ $indicator->name }}
-                                @endif
+                                {{ $indicator->name }}
                                 @if($indicator->key_performance == 'Yes')
                                 <a href="#" class="badge bg-warning text-white rounded-pill p-1">
                                     KPI
@@ -93,50 +96,12 @@
                             </td>
                             <th class="text-center">@include('admin.indicators.indicator.actions')</th>
                         </tr>
-                    @endforeach
-                    @foreach($project->resultFrameworks as $framework)
-                        <tr class="table-light">
-                            <td colspan="7" class="fw-semibold">{{ $framework->title }}</td>
-                        </tr>
-                        @foreach($framework->indicators as $key =>$indicator)
-                            <tr>
-                                <td>{{ ++$key }}</td>
-                                <td>
-                                    {{ $indicator->name }}
-                                    @if($indicator->key_performance == 'Yes')
-                                    <a href="#" class="badge bg-warning text-white rounded-pill p-1">
-                                        KPI
-                                    </a>
-                                    @endif
-                                </td>
-                                <td>{{ $indicator->format }}</td>
-                                <td>{{ $indicator->projectReportingPeriod->title ?? ''}}</td>
-                                <td>{{ $indicator->status }}</td>
-                                <td>
-                                    @if($indicator->format != 'Qualitative Only' && $indicator->aggregated !='Yes')
-                                        @php($data = getIndicatorActualVsTarget($indicator))
-                                        {{ $data['stat'] }} 
-                                        <div class="progress">
-                                            <div class="progress-bar bg-teal" style="width: {{ $data['percentage'] }}%" aria-valuenow="{{ $data['percentage'] }}" aria-valuemin="0" aria-valuemax="100">{{ $data['percentage'] }}% complete</div>
-                                        </div>
-                                    @endif
-                                    @if($indicator->format != 'Qualitative Only' && $indicator->aggregated =='Yes')
-                                        @php($data = calculateAggregatedTarget($indicator))
-                                        {{ $data['stat'] }} 
-                                        <div class="progress">
-                                            <div class="progress-bar bg-teal" style="width: {{ $data['percentage'] }}%" aria-valuenow="{{ $data['percentage'] }}" aria-valuemin="0" aria-valuemax="100">{{ $data['percentage'] }}% complete</div>
-                                        </div>
-                                    @endif
-                                </td>
-                                <th class="text-center">@include('admin.indicators.indicator.actions')</th>
-                            </tr>
                         @endforeach
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    @endif
 </div>
 @endsection
 
@@ -169,28 +134,6 @@
                 }
             }).then((result) => {
                 if (result.value === true)  $(this).closest("form").submit();
-            });
-        });
-        var _token = $("input[name='_token']").val(); 
-        $('#indicatorsProject').on('change', function(){
-            var id = $(this).val();
-            $.ajax({
-                url: "{{ route('indicators.setProject') }}",
-                type: 'POST',
-                data: {
-                    id: id,
-                    _token: _token
-                },
-                success: function(response) {
-                    window.location.href = "{{ route('indicators.index') }}";
-                },
-                error: function(xhr, status, error) {
-                    new Noty({
-                        layout: 'bottomCenter',
-                        text: error,
-                        type: 'error'
-                    }).show();
-                }
             });
         });
     });

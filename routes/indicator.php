@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['as' => 'indicators.', 'controller' => IndicatorController::class], function () {
     Route::get('list',                  'index'      )->name('index'     );
+    Route::post('list',                 'index'      )->name('filter'    );
     Route::get('create',                'create'     )->name('create'    );
     Route::post('store',                'store'      )->name('store'     );
     Route::get('edit/{id}',             'edit'       )->name('edit'      );
     Route::get('show/{id}',             'show'       )->name('show'      );
     Route::patch('update/{indicator}',  'update'     )->name('update'    );
     Route::delete('delete/{id}',        'destroy'    )->name('destroy'   );
-    Route::post('set-project',          'setProject' )->name('setProject');
 });
 
 /*

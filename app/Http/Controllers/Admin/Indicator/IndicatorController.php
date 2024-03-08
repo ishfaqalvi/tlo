@@ -33,14 +33,15 @@ class IndicatorController extends Controller
      */
     public function index(Request $request)
     {
-        $indicators = array();
-        $project = '';
-        $indicatorProjectId = $request->session()->get('indicatorProjectId');
-        if (!empty($indicatorProjectId)) {
-            $project = Project::find($indicatorProjectId);  
-        }
+        $indicators = Indicator::with('resultFramework')->filter($request->all())->get();
 
-        return view('admin.indicators.indicator.index', compact('project','indicatorProjectId'));
+        $groupedIndicators = $indicators->mapToGroups(function ($item, $key) {
+            $groupName = $item->resultFramework ? $item->resultFramework->name : 'Non-classified Indicators';
+            return [$groupName => $item];
+        });
+        $request->method() == 'POST' ? $userRequest = $request : $userRequest = null;
+
+        return view('admin.indicators.indicator.index', compact('groupedIndicators','userRequest'));
     }
 
     /**
@@ -65,18 +66,6 @@ class IndicatorController extends Controller
         $indicator = Indicator::create($request->all());
         return redirect()->route('indicators.index')
             ->with('success', 'Indicator created successfully.');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function setProject(Request $request)
-    {
-        $request->session()->put('indicatorProjectId', $request->id);
-        return response()->json(['message' => 'Project selected successfully!']);
     }
 
     /**

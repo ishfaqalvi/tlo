@@ -79,13 +79,13 @@
                     <td>{{ date('d M Y',$project->end_date) }}</td>
                     <td>{{ $project->category->title ?? "" }}</td>
                     <td>{{ $project->donnor }}</td>
-                    <td>
+                    <td class="text-center">
                         @if($project->status == 'Green')
-                            <i class="fas fa-circle me-3 fa-1x text-success" title="{{ $project->status }}"></i>
+                            <i class="fas fa-circle fa-1x text-success" title="{{ $project->status }}"></i>
                         @elseif($project->status == 'Amber')
-                            <i class="fas fa-circle me-3 fa-1x text-warning" title="{{ $project->status }}"></i>
+                            <i class="fas fa-circle fa-1x text-warning" title="{{ $project->status }}"></i>
                         @elseif($project->status == 'Red')
-                            <i class="fas fa-circle me-3 fa-1x text-danger" title="{{ $project->status }}"></i>
+                            <i class="fas fa-circle fa-1x text-danger" title="{{ $project->status }}"></i>
                         @endif
                     </td>
                     <td>{{ $project->creator->name }}</td>

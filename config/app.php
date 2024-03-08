@@ -186,7 +186,7 @@ return [
         /*
          * Package Service Providers...
          */
-        eloquentFilter\ServiceProvider::class,
+        
 
         /*
          * Application Service Providers...
@@ -213,7 +213,6 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
-        'EloquentFilter' => eloquentFilter\Facade\EloquentFilter::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

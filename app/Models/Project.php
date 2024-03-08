@@ -137,8 +137,6 @@ class Project extends Model implements Auditable
         return $this->hasOne('App\Models\User', 'id', 'assigned_to');
     }
 
-
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -225,5 +223,13 @@ class Project extends Model implements Auditable
     public function indicators()
     {
         return $this->hasMany('App\Models\Indicator', 'project_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function beneficiaries()
+    {
+        return $this->hasMany('App\Models\Beneficiary', 'project_id', 'id');
     }   
 }

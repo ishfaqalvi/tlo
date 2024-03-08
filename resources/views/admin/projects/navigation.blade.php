@@ -67,4 +67,10 @@
         <i class="ph-currency-circle-dollar me-1"></i>
         Budget
     </a>
+    <a 
+        href="{{ route('projects.beneficiaries.index',$project->id)}}" 
+        class="d-flex align-items-center text-body p-2 {{ request()->routeIs('projects.beneficiaries.index*') ? 'active' : ''}}">
+        <i class="ph-users-three me-1"></i>
+        Beneficiaries
+    </a>
 </div>

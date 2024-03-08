@@ -146,3 +146,16 @@ Route::group([
 ], function () {
     Route::get('list/{id}',   'index')->name('index');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Project Beneficiary Routes
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'prefix'    => 'beneficiaries',
+    'as'        => 'projects.beneficiaries.',
+    'controller'=> BeneficiaryController::class
+], function () {
+    Route::get('list/{id}',   'index')->name('index');
+});

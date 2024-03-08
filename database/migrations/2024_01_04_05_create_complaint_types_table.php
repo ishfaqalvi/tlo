@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('activity_progress', function (Blueprint $table) {
+        Schema::create('complaint_types', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->unsignedBigInteger('deleted_by')->nullable();
+            $table->text('title');
+            $table->enum('type',['Sensitive','Insensitive']);
+            $table->integer('deadline');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activity_progress');
+        Schema::dropIfExists('complaint_types');
     }
 };

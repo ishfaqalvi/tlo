@@ -60,6 +60,20 @@ class PermissionSeeder extends Seeder
                   'resultFrameworks-edit', 
                   'resultFrameworks-delete',
 
+                  'beneficiaries-list', 
+                  'beneficiaries-view', 
+                  'beneficiaries-create', 
+                  'beneficiaries-import', 
+                  'beneficiaries-edit', 
+                  'beneficiaries-delete',
+
+                  'feadbacks-list', 
+                  'feadbacks-view', 
+                  'feadbacks-create', 
+                  'feadbacks-import', 
+                  'feadbacks-edit', 
+                  'feadbacks-delete',
+
                   'indicators-list', 
                   'indicators-view', 
                   'indicators-create', 
@@ -148,11 +162,11 @@ class PermissionSeeder extends Seeder
                   'thematicArea-edit', 
                   'thematicArea-delete',
 
-                  'activityProgress-list', 
-                  'activityProgress-view', 
-                  'activityProgress-create', 
-                  'activityProgress-edit', 
-                  'activityProgress-delete',
+                  'complaintTypes-list', 
+                  'complaintTypes-view', 
+                  'complaintTypes-create', 
+                  'complaintTypes-edit', 
+                  'complaintTypes-delete',
 
                   'roles-list', 
                   'roles-view', 

@@ -1,19 +1,19 @@
 @extends('admin.layout.app')
 
 @section('title')
-    {{ __('Update') }} Activity Progress
+    {{ __('Update') }} Feadback
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Activity Progress Management</span>
+            Home - <span class="fw-normal">Feadback Management</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
         <div class="d-sm-flex align-items-center mb-3 mb-lg-0 ms-lg-3">
-            <a href="{{ route('activity-progresses.index') }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
+            <a href="{{ route('feadbacks.index') }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill">
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-arrow-circle-left"></i>
                 </span>
@@ -28,13 +28,13 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">{{ __('Edit ') }} Activity Progress </h5>
+            <h5 class="mb-0">{{ __('Edit ') }} Feadback </h5>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('activity-progresses.update', $activityProgress->id) }}" class="validate" role="form" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('feadbacks.update', $feadback->id) }}" class="validate" role="form" enctype="multipart/form-data">
                 @csrf
                 {{ method_field('PATCH') }}
-                @include('admin.catalog.activity-progress.form')
+                @include('admin.feadback.form')
             </form>
         </div>
     </div>
@@ -44,6 +44,23 @@
 @section('script')
 <script>
     $(function(){
+        $('select[name=channel]').on('change', function(){
+            var channel = $(this).val();
+            if (channel == 'Other Bright Ideas') {
+                $('#other_channel').attr('disabled',false);
+            }else{
+                $('#other_channel').val('');
+                $('#other_channel').attr('disabled',true);
+            }
+        }).trigger('change');
+        $('#responce_share').change(function(){
+            if($(this).is(':checked')) {
+                $('div.agree').show();
+            } else {
+                $('div.agree').hide();
+            }
+        }).trigger('change');
+        $('.select').select2();
         $('.validate').validate({
             errorClass: 'validation-invalid-label',
             successClass: 'validation-valid-label',
