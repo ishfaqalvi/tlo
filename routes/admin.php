@@ -123,6 +123,7 @@ Route::group([
     Route::get('show/{id}',                 'show'   )->name('show'   );
     Route::patch('update/{feadback}',       'update' )->name('update' );
     Route::delete('delete/{id}',            'destroy')->name('destroy');
+    Route::post('responce/store',           'responceStore')->name('responces.store');
 });
 
 /*

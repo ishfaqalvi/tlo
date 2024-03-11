@@ -39,23 +39,42 @@ class Feadback extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['channel','other_channel','name','contact_number','address','complainer_type','complaint_type_id','committee','responce_share','agree','description','status'];
+    protected $fillable = [
+        'channel',
+        'other_channel',
+        'name',
+        'contact_number',
+        'address',
+        'complainer_type',
+        'complaint_type_id',
+        'attachment',
+        'status'
+    ];
 
-    // public function getChannelAttribute($value)
-    // {
-    //     if ($value == 'Other Bright Ideas') {
-    //         return $this->attributes['other_channel'];
-    //     }
-    //     return $value;
-    // }
-
-    public function setResponceShareAttribute($value){
-        if (isset($value)) {
-            $this->attributes['responce_share'] = 'Yes';
-        }else{
-            $this->attributes['responce_share'] = Null;
-            $this->attributes['agree'] = Null;
+    /**
+     * The set attributes.
+     *
+     * @var array
+     */
+    public function setAttachmentAttribute($image)
+    {
+        if ($image instanceof \Illuminate\Http\UploadedFile) {
+            $name = $image->getClientOriginalName();
+            $image->move('images/feadback', $name);
+            $this->attributes['attachment'] = 'images/feadback/'.$name;
+        } else {
+            unset($this->attributes['attachment']);
         }
+    }
+
+    /**
+     * The get attributes.
+     *
+     * @var array
+     */
+    public function getAttachmentAttribute($image)
+    {
+        if($image){ return asset($image); }
     }
 
     /**
@@ -64,5 +83,13 @@ class Feadback extends Model implements Auditable
     public function complaintType()
     {
         return $this->hasOne('App\Models\Catalog\ComplaintType', 'id', 'complaint_type_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function responces()
+    {
+        return $this->hasMany('App\Models\FeadbackResponce', 'feadback_id', 'id');
     }
 }

@@ -55,22 +55,32 @@
                 <strong>Complaint Type:</strong>
                 {{ $feadback->complaintType->title }}
             </div>
+            @if(isset($feadback->attachment))
             <div class="form-group mb-3">
-                <strong>Committee:</strong>
-                {{ $feadback->committee }}
+                <strong>Attachment:</strong>
+                <a href="{{ $feadback->attachment }}" target="_blank">View Attachment</a>
             </div>
-            <div class="form-group mb-3">
-                <strong>Responce Share:</strong>
-                {{ $feadback->responce_share }}
-            </div>
-            <div class="form-group mb-3">
-                <strong>Agree:</strong>
-                {{ $feadback->agree }}
-            </div>
-            <div class="form-group mb-3">
-                <strong>Description:</strong>
-                {{ $feadback->description }}
-            </div>
+            @endif
+            @if($feadback->responces()->count() > 0)
+            <table class="table">
+                <thead class="thead">
+                    <tr>
+                        <th>No</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach ($feadback->responces as $key => $responce)
+                    <tr>
+                        <td>{{ ++$key }}</td>
+                        <td>{{ $responce->status }}</td>
+                        <td>{{ $responce->description }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            @endif
         </div>
     </div>
 </div>

@@ -8,6 +8,11 @@
             <form action="{{ route('feadbacks.destroy',$feadback->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
+                @if($feadback->status != 'Closed' && auth()->user()->can('feadbacks-responces'))
+                    <a href="" data-bs-toggle="modal" data-bs-target="#addRespnce{{ $feadback->id }}" class="dropdown-item">
+                        <i class="ph-plus me-2"></i>{{ __('Add Responce') }}
+                    </a>
+                @endif
                 @can('feadbacks-view')
                     <a href="{{ route('feadbacks.show',$feadback->id) }}" class="dropdown-item">
                         <i class="ph-eye me-2"></i>{{ __('Show') }}

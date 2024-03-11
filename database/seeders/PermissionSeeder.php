@@ -70,7 +70,8 @@ class PermissionSeeder extends Seeder
                   'feadbacks-list', 
                   'feadbacks-view', 
                   'feadbacks-create', 
-                  'feadbacks-import', 
+                  'feadbacks-import',
+                  'feadbacks-responces',
                   'feadbacks-edit', 
                   'feadbacks-delete',
 

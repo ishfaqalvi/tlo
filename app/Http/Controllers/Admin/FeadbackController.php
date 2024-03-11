@@ -115,4 +115,27 @@ class FeadbackController extends Controller
         return redirect()->route('feadbacks.index')
             ->with('success', 'Feadback deleted successfully');
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function responceStore(Request $request)
+    {
+        $feadback = Feadback::find($request->feadback_id);
+        if($request->status == 'Assign'){
+            $status = 'Assign';
+        }elseif($request->status == 'Responce Share'){
+            $status = 'Processing';
+        }elseif($request->status == 'Complainer Agree'){
+            $status = 'Closed';
+        }elseif($request->status == 'Complainer DisAgree'){
+            $status = 'Reprocessing';
+        }
+        $feadback->update(['status' => $status]);
+        $feadback->responces()->create($request->all());
+        return redirect()->back()->with('success', 'Feadback Responce added successfully.');
+    }
 }

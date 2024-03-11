@@ -36,18 +36,11 @@ return new class extends Migration
                 'Other Stakeholders'
             ]);
             $table->foreignId('complaint_type_id')->references('id')->on('complaint_types')->cascadeOnDelete();
-            $table->enum('committee',[
-                'Finance Team',
-                'Field Team',
-                'Program Team',
-                'Female Team'
-            ])->nullable();
-            $table->string('responce_share')->nullable();
-            $table->string('agree')->nullable();
-            $table->text('description')->nullable();
+            $table->string('attachment')->nullable();
             $table->enum('status',[
                 'Pending',
                 'Assign',
+                'Processing',
                 'Reprocessing',
                 'Closed'
             ])->default('Pending');
