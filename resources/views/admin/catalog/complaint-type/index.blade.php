@@ -44,7 +44,12 @@
             </thead>
             <tbody>
             @foreach ($complaintTypes as $key => $complaintType)
-                <tr>
+                @if($complaintType->type == 'Sensitive')
+                    @php($textColor = 'text-danger')
+                @else
+                    @php($textColor = 'text-info')
+                @endif
+                <tr class="{{ $textColor }}">
                     <td>{{ ++$key }}</td>
 					<td>{{ $complaintType->title }}</td>
 					<td>{{ $complaintType->type }}</td>

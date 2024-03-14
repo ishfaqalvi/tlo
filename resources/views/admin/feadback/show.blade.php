@@ -55,6 +55,10 @@
                 <strong>Complaint Type:</strong>
                 {{ $feadback->complaintType->title }}
             </div>
+            <div class="form-group mb-3">
+                <strong>Description:</strong>
+                {{ $feadback->description }}
+            </div>
             @if(isset($feadback->attachment))
             <div class="form-group mb-3">
                 <strong>Attachment:</strong>

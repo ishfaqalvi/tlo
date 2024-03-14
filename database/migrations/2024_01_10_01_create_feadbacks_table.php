@@ -37,6 +37,7 @@ return new class extends Migration
             ]);
             $table->foreignId('complaint_type_id')->references('id')->on('complaint_types')->cascadeOnDelete();
             $table->string('attachment')->nullable();
+            $table->text('description')->nullable();
             $table->enum('status',[
                 'Pending',
                 'Assign',

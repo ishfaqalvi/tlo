@@ -48,6 +48,7 @@ class Feadback extends Model implements Auditable
         'complainer_type',
         'complaint_type_id',
         'attachment',
+        'description',
         'status'
     ];
 
