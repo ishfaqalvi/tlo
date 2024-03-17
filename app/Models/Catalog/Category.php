@@ -37,4 +37,12 @@ class Category extends Model implements Auditable
      * @var array
      */
     protected $fillable = ['title'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function projects()
+    {
+        return $this->hasMany('App\Models\Project', 'category_id', 'id');
+    }
 }

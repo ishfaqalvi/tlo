@@ -52,7 +52,7 @@
     <div class="form-group col-lg-4 mb-3">
         {{ Form::label('stage') }}
         {{ Form::select('stage', [
-            'Pipeline/Identification' => 'Pipeline/Identification',
+            'Pipeline'                => 'Pipeline/Identification',
             'Implementation'          => 'Implementation',
             'Finalisation'            => 'Finalisation',
             'Inprogress'              => 'Inprogress',

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Wildside\Userstamps\Userstamps;
+use App\Models\Project;
 
 /**
  * Class Province
@@ -36,4 +37,9 @@ class Province extends Model implements Auditable
      * @var array
      */
     protected $fillable = ['title'];
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_provinces');
+    }
 }

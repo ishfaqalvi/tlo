@@ -30,4 +30,12 @@ class ComplaintType extends Model implements Auditable
      * @var array
      */
     protected $fillable = ['title','type','deadline'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function feadbacks()
+    {
+        return $this->hasMany('App\Models\Feadback', 'complaint_type_id', 'id');
+    }
 }

@@ -7,7 +7,19 @@ use Illuminate\Support\Facades\Route;
 | Dashboard Route
 |--------------------------------------------------------------------------
 */
-Route::get('dashboard', DashboardController::class)->name('dashboard');
+Route::group([
+    'prefix'     => 'dashboard',
+    'as'         => 'dashboard.',
+    'controller' => DashboardController::class
+], function () {
+    Route::get('/',                  'widgets'    )->name('widgets'    );
+    Route::get('projects',           'projects'   )->name('projects'   );
+    Route::get('budget',             'budget'     )->name('budget'     );
+    Route::get('indicators',         'indicators' )->name('indicators' );
+    Route::get('feadbacks',          'feadbacks'  )->name('feadbacks'  );
+    Route::post('set-project',       'setProject' )->name('setProject' );
+    Route::post('set-activity',      'setActivity')->name('setActivity');
+});
 
 /*
 |--------------------------------------------------------------------------

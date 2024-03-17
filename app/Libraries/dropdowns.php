@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\{Project,User,Stakeholder,Site,Indicator,ResultFramework};
+use App\Models\{Project,Activity,User,Stakeholder,Site,Indicator,ResultFramework};
 use App\Models\Project\{ProjectPhase,ProjectReportingPeriod,ProjectDisaggregation};
 use App\Models\Catalog\{Category,Province,StakeholderRole,ThematicArea,ComplaintType};
 
@@ -92,6 +92,16 @@ function sites()
 function projects()
 {
     return Project::pluck('name','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function activities()
+{
+    return Activity::pluck('name','id');
 }
 
 /**

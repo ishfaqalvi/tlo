@@ -13,10 +13,25 @@
         </a>
     </div>
 </div>
+<div class="page-header-content d-lg-flex border-top">
+    @include('admin.dashboard.include.navigation')
+</div>
 @endsection
 
 @section('content')
 <div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Stage Wise Projects</h5>
+            </div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <div class="chart" id="d3-bar-vertical"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-sm-8">
         <div class="card card-body">
             <h6 class="fw-semibold">Category Wise Projects</h6>
@@ -41,18 +56,6 @@
                 </div>
                 @endif
                 @endforeach
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="mb-0">Stage Wise Projects</h5>
-            </div>
-            <div class="card-body">
-                <div class="chart-container">
-                    <div class="chart" id="d3-bar-vertical"></div>
-                </div>
             </div>
         </div>
     </div>

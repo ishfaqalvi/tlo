@@ -47,7 +47,7 @@
             </thead>
             <tbody>
             @foreach ($feadbacks as $key => $feadback)
-                @if($feadback->type == 'Sensitive')
+                @if($feadback->complaintType->type == 'Sensitive')
                     @php($textColor = 'text-danger')
                 @else
                     @php($textColor = 'text-info')

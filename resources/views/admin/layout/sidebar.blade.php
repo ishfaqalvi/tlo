@@ -4,7 +4,7 @@
     <i class="ph-dots-three sidebar-resize-show"></i>
 </li>
 <li class="nav-item">
-    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : ''}}" href="{{ route('dashboard') }}">
+    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : ''}}" href="{{ route('dashboard.widgets') }}">
         <i class="ph-house"></i>
         <span>Dashboard</span>
     </a>
@@ -62,7 +62,7 @@
         <span>Sites</span>
     </a>
 </li>
-@endcan
+@endcan 
 @can('beneficiaries-list')
 <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('beneficiaries*') ? 'active' : ''}}" href="{{ route('beneficiaries.index') }}">

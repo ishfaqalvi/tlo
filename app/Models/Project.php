@@ -114,14 +114,6 @@ class Project extends Model implements Auditable
     }
 
     /**
-     * Interact with the date.
-     */
-    public function setProvinceIdAttribute($value)
-    {
-        $this->attributes['province_id'] = implode(',',$value);
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function category()

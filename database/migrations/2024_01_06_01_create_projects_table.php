@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('project_contract_number')->nullable();
             $table->string('name');
             $table->enum('stage',[
-                'Pipeline/Identification',
+                'Pipeline',
                 'Implementation',
                 'Finalisation',
                 'Inprogress',
