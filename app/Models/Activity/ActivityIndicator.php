@@ -45,6 +45,6 @@ class ActivityIndicator extends Model implements Auditable
      */
     public function indicator()
     {
-        return $this->hasOne('App\Models\indicator', 'id', 'indicator_id');
+        return $this->hasOne('App\Models\Indicator', 'id', 'indicator_id');
     } 
 }

@@ -52,13 +52,13 @@
                 @else
                     @php($textColor = 'text-info')
                 @endif
-                <tr class="{{ $textColor }}">
+                <tr>
                     <td>{{ ++$key }}</td>
 					<td>{{ $feadback->channel == 'Other Bright Ideas' ? $feadback->other_channel : $feadback->channel}}</td>
 					<td>{{ $feadback->name }}</td>
 					<td>{{ $feadback->contact_number }}</td>
 					<td>{{ $feadback->complainer_type }}</td>
-					<td>{{ $feadback->complaintType->title }}</td>
+					<td class="{{ $textColor }}">{{ $feadback->complaintType->title }}</td>
 					<td>{{ $feadback->status }}</td>
                     <td>@include('admin.feadback.actions')</td>
                 </tr>

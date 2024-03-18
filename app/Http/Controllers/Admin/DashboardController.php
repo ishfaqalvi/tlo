@@ -122,10 +122,48 @@ class DashboardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function indicators()
+    public function indicators(Request $request)
     {
+        $selectedProject = $request->session()->get('dashboardIndicatorProjectId');
+    
+        // Use a base query to avoid repetition
+        $baseQuery = Indicator::query();
         
-        return view('admin.dashboard.indicators');
+        if ($selectedProject) {
+            $baseQuery->where('project_id', $selectedProject);
+        }
+
+        // Retrieve all indicators based on the selected project, if any
+        $indicators = $baseQuery->get();
+
+        // Retrieve data indicators excluding 'Qualitative Only' and where 'aggregated' is null
+        $dataindicators = $baseQuery->where('format', '!=', 'Qualitative Only')
+                                    ->whereNull('aggregated')
+                                    ->get();
+
+        // Define statuses and prepare to count indicators by status
+        $statuses = ['Not yet started', 'Postponed', 'Paused', 'On Track', 'Minor Delays', 'Major Delays'];
+        $statusCounts = $this->countIndicatorsByStatus($baseQuery, $statuses);
+
+        return view('admin.dashboard.indicators', compact('indicators', 'dataindicators', 'statusCounts', 'selectedProject'));
+    }
+
+    /**
+     * Count indicators by their statuses.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param array $statuses
+     * @return array
+     */
+    protected function countIndicatorsByStatus($query, $statuses)
+    {
+        $statusCounts = [];
+        foreach ($statuses as $status) {
+            $count = (clone $query)->where('status', $status)->count();
+            $statusCounts[$status] = $count;
+        }
+
+        return $statusCounts;
     }
 
     /**
@@ -180,7 +218,12 @@ class DashboardController extends Controller
      */
     public function setProject(Request $request)
     {
-        $request->session()->put('dashboardBudgetProjectId', $request->id);
+        if ($request->type == 'Indicator') {
+            $request->session()->put('dashboardIndicatorProjectId', $request->id);    
+        }else{
+            $request->session()->put('dashboardBudgetProjectId', $request->id);
+        }
+        
         return response()->json(['message' => 'Project selected successfully!']);
     }
 
