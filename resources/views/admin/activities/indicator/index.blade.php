@@ -24,6 +24,9 @@
         </div>
     </div>
 </div>
+<div class="page-header-content d-lg-flex border-top">
+    @include('admin.activities.navigation')
+</div>
 @endsection
 
 @section('content')

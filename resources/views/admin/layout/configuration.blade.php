@@ -36,32 +36,5 @@
                 <input type="radio" class="form-check-input cursor-pointer ms-auto" name="main-theme" value="dark">
             </div>
         </label>
-        <label class="list-group-item list-group-item-action form-check border-width-1 rounded mb-0">
-            <div class="d-flex flex-fill my-1">
-                <div class="form-check-label d-flex me-2">
-                    <i class="ph-translate ph-lg me-3"></i>
-                    <div>
-                        <span class="fw-bold">Auto theme</span>
-                        <div class="fs-sm text-muted">Set theme based on system mode</div>
-                    </div>
-                </div>
-                <input type="radio" class="form-check-input cursor-pointer ms-auto" name="main-theme" value="auto">
-            </div>
-        </label>
-    </div>
-    <div class="fw-semibold mb-2">Direction</div>
-    <div class="list-group mb-3">
-        <label class="list-group-item list-group-item-action form-check border-width-1 rounded mb-0">
-            <div class="d-flex flex-fill my-1">
-                <div class="form-check-label d-flex me-2">
-                    <i class="ph-translate ph-lg me-3"></i>
-                    <div>
-                        <span class="fw-bold">RTL direction</span>
-                        <div class="text-muted">Toggle between LTR and RTL</div>
-                    </div>
-                </div>
-                <input type="checkbox" name="layout-direction" value="rtl" class="form-check-input cursor-pointer m-0 ms-auto">
-            </div>
-        </label>
     </div>
 </div>

@@ -94,6 +94,11 @@ class Project extends Model implements Auditable
             $query->where('name', 'like', '%'.$request['search'].'%')
             ->orWhere('description', 'like', '%'.$request['search'].'%');
         }
+        if (!auth()->user()->hasRole(1)) {
+            $query->whereHas('teamMembers', function ($query) {
+                $query->whereUserId(auth()->user()->id);
+            });
+        }
         return $query;
     }
 

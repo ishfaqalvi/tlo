@@ -29,7 +29,7 @@ class DashboardController extends Controller
     {
         $widgets = [
             'projects'        => Project::count(),
-            'resultFramework' => ResultFramework::count(),
+            'resultFramework' => ResultFramework::whereNull('parent_id')->count(),
             'indicators'      => Indicator::count(),
             'activities'      => Activity::count(),
             'stakeholders'    => Stakeholder::count(),
