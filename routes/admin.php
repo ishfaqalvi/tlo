@@ -140,6 +140,44 @@ Route::group([
 
 /*
 |--------------------------------------------------------------------------
+| Lessons Route
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'prefix'     => 'lessons',
+    'as'         => 'lessons.',
+    'controller' => LessonController::class
+], function () {
+    Route::get('list',                      'index'  )->name('index'  );
+    Route::get('create',                    'create' )->name('create' );
+    Route::post('store',                    'store'  )->name('store'  );
+    Route::get('edit/{id}',                 'edit'   )->name('edit'   );
+    Route::get('show/{id}',                 'show'   )->name('show'   );
+    Route::patch('update/{lesson}',         'update' )->name('update' );
+    Route::delete('delete/{id}',            'destroy')->name('destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Risk Plan Route
+|--------------------------------------------------------------------------
+*/
+Route::group([
+    'prefix'     => 'risk-plans',
+    'as'         => 'risk-plans.',
+    'controller' => RiskPlanController::class
+], function () {
+    Route::get('list',                      'index'  )->name('index'  );
+    Route::get('create',                    'create' )->name('create' );
+    Route::post('store',                    'store'  )->name('store'  );
+    Route::get('edit/{id}',                 'edit'   )->name('edit'   );
+    Route::get('show/{id}',                 'show'   )->name('show'   );
+    Route::patch('update/{riskPlan}',       'update' )->name('update' );
+    Route::delete('delete/{id}',            'destroy')->name('destroy');
+});
+
+/*
+|--------------------------------------------------------------------------
 | Config Route
 |--------------------------------------------------------------------------
 */

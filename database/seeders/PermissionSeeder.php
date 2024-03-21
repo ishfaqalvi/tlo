@@ -139,6 +139,18 @@ class PermissionSeeder extends Seeder
                   'sites-edit', 
                   'sites-delete',
 
+                  'lessons-list', 
+                  'lessons-view', 
+                  'lessons-create', 
+                  'lessons-edit', 
+                  'lessons-delete',
+
+                  'riskPlans-list', 
+                  'riskPlans-view', 
+                  'riskPlans-create', 
+                  'riskPlans-edit', 
+                  'riskPlans-delete',
+
                   'categories-list', 
                   'categories-view', 
                   'categories-create', 
