@@ -4,6 +4,11 @@
         {{ Form::select('project_id', projects(), $riskPlan->project_id, ['class' => 'form-control select' . ($errors->has('project_id') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required']) }}
         {!! $errors->first('project_id', '<div class="invalid-feedback">:message</div>') !!}
     </div>
+    <div class="form-group col-lg-8 mb-3">
+        {{ Form::label('description','Risk Description') }}
+        {{ Form::text('description', $riskPlan->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Description','required']) }}
+        {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
+    </div>
     <div class="form-group col-lg-4 mb-3">
         {{ Form::label('consequence') }}
         {{ Form::text('consequence', $riskPlan->consequence, ['class' => 'form-control' . ($errors->has('consequence') ? ' is-invalid' : ''), 'placeholder' => 'Consequence','required']) }}
@@ -56,6 +61,11 @@
         </select>
         {!! $errors->first('strategy', '<div class="invalid-feedback">:message</div>') !!}
     </div>
+    <div class="form-group col-lg-12 mb-3">
+        {{ Form::label('responce') }}
+        {{ Form::text('responce', $riskPlan->responce, ['class' => 'form-control' . ($errors->has('responce') ? ' is-invalid' : ''), 'placeholder' => 'Responce','required']) }}
+        {!! $errors->first('responce', '<div class="invalid-feedback">:message</div>') !!}
+    </div>
     <div class="form-group col-lg-4 mb-3">
         {{ Form::label('action_date') }}
         {{ Form::text('action_date', date('m/d/Y', $riskPlan->action_date), ['class' => 'form-control action_date' . ($errors->has('action_date') ? ' is-invalid' : ''), 'placeholder' => 'Action Date','required']) }}
@@ -73,16 +83,6 @@
     </div>
 </div>
 <div class="row">
-    <div class="form-group col-lg-6 mb-3">
-        {{ Form::label('responce') }}
-        {{ Form::textarea('responce', $riskPlan->responce, ['class' => 'form-control' . ($errors->has('responce') ? ' is-invalid' : ''), 'placeholder' => 'Responce','required','rows'=>'3']) }}
-        {!! $errors->first('responce', '<div class="invalid-feedback">:message</div>') !!}
-    </div>
-    <div class="form-group col-lg-6 mb-3">
-        {{ Form::label('description','Risk Description') }}
-        {{ Form::textarea('description', $riskPlan->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Description','required','rows'=>'3']) }}
-        {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
-    </div>
 	<div class="col-md-12 d-flex justify-content-end align-items-center mt-3">
 		<button type="submit" class="btn btn-primary ms-3">
 			Submit <i class="ph-paper-plane-tilt ms-2"></i>

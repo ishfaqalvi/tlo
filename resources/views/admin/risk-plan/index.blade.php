@@ -47,7 +47,7 @@
             <h5 class="mb-0">Risk Management Plan</h5>
         </div>
         <div class="table-responsive">
-            <table class="table text-nowrap">
+            <table class="table">
                 <thead class="thead">
                     <tr>
                         <th>No</th>

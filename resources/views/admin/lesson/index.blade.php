@@ -1,14 +1,14 @@
 @extends('admin.layout.app')
 
 @section('title')
-    Lessons Learn Log
+    Lessons Learnt Log
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Lessons Learn Log Management</span>
+            Home - <span class="fw-normal">Lessons Learnt Log Management</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -24,7 +24,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-plus"></i>
                 </span>
-                Add Lessons Learn Log
+                Add Lessons Learnt Log
             </a>
             @endcan
         </div>
@@ -44,7 +44,7 @@
     </div>
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">Lessons Learn Log</h5>
+            <h5 class="mb-0">Lessons Learnt Log</h5>
         </div>
         <table class="table datatable-basic">
             <thead class="thead">
