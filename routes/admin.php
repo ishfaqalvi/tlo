@@ -149,6 +149,7 @@ Route::group([
     'controller' => LessonController::class
 ], function () {
     Route::get('list',                      'index'  )->name('index'  );
+    Route::post('list',                     'index'  )->name('filters');
     Route::get('create',                    'create' )->name('create' );
     Route::post('store',                    'store'  )->name('store'  );
     Route::get('edit/{id}',                 'edit'   )->name('edit'   );
@@ -168,6 +169,7 @@ Route::group([
     'controller' => RiskPlanController::class
 ], function () {
     Route::get('list',                      'index'  )->name('index'  );
+    Route::post('list',                     'index'  )->name('filters');
     Route::get('create',                    'create' )->name('create' );
     Route::post('store',                    'store'  )->name('store'  );
     Route::get('edit/{id}',                 'edit'   )->name('edit'   );

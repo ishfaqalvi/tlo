@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('project_id')->references('id')->on('projects')->cascadeOnDelete();
             $table->text('description');
             $table->text('consequence');
-            $table->enum('probability',['High','Medium','Low']);
-            $table->enum('impact',['High','Medium','Low']);
+            $table->enum('probability',['High 3','Medium 2','Low 1']);
+            $table->enum('impact',['High 3','Medium 2','Low 1']);
             $table->enum('priority',['1','2','3']);
             $table->enum('level',['9','6','3','2']);
             $table->enum('strategy',['Avoid','Mitigate','Transfer','Accepted']);

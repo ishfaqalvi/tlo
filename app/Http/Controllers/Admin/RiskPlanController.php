@@ -31,11 +31,12 @@ class RiskPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $riskPlans = RiskPlan::get();
+        $riskPlans = RiskPlan::filter($request->all())->get();
+        $request->method() == 'POST' ? $userRequest = $request : $userRequest = null;
 
-        return view('admin.risk-plan.index', compact('riskPlans'));
+        return view('admin.risk-plan.index', compact('riskPlans','userRequest'));
     }
 
     /**

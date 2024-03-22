@@ -31,11 +31,12 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $lessons = Lesson::get();
+        $lessons = Lesson::filter($request->all())->get();
+        $request->method() == 'POST' ? $userRequest = $request : $userRequest = null;
 
-        return view('admin.lesson.index', compact('lessons'));
+        return view('admin.lesson.index', compact('lessons','userRequest'));
     }
 
     /**

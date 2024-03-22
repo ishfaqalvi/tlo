@@ -13,9 +13,9 @@
         {{ Form::label('probability') }}
         <select name="probability" class="form-control form-select" required>
             <option value="">--Select--</option>
-            <option value="Low" class="text-success" {{ "Low" == $riskPlan->probability ? 'selected' : ''}}>Low</option>
-            <option value="Medium" class="text-warning" {{ "Medium" == $riskPlan->probability ? 'selected' : ''}}>Medium</option>
-            <option value="High" class="text-danger" {{ "High" == $riskPlan->probability ? 'selected' : ''}}>High</option>
+            <option value="High 3" class="text-danger" {{ "High 3" == $riskPlan->probability ? 'selected' : ''}}>High 3</option>
+            <option value="Medium 2" class="text-warning" {{ "Medium 2" == $riskPlan->probability ? 'selected' : ''}}>Medium 2</option>
+            <option value="Low 1" class="text-success" {{ "Low 1" == $riskPlan->probability ? 'selected' : ''}}>Low 1</option>
         </select>
         {!! $errors->first('probability', '<div class="invalid-feedback">:message</div>') !!}
     </div>
@@ -23,20 +23,20 @@
         {{ Form::label('impact') }}
         <select name="impact" class="form-control form-select" required>
             <option value="">--Select--</option>
-            <option value="Low" class="text-success" {{ "Low" == $riskPlan->impact ? 'selected' : ''}}>Low</option>
-            <option value="Medium" class="text-warning" {{ "Medium" == $riskPlan->impact ? 'selected' : ''}}>Medium</option>
-            <option value="High" class="text-danger" {{ "High" == $riskPlan->impact ? 'selected' : ''}}>High</option>
+            <option value="High 3" class="text-danger" {{ "High 3" == $riskPlan->impact ? 'selected' : ''}}>High 3</option>
+            <option value="Medium 2" class="text-warning" {{ "Medium 2" == $riskPlan->impact ? 'selected' : ''}}>Medium 2</option>
+            <option value="Low 1" class="text-success" {{ "Low 1" == $riskPlan->impact ? 'selected' : ''}}>Low 1</option>
         </select>
         {!! $errors->first('impact', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-4 mb-3">
-        {{ Form::label('priority') }}
+        {{ Form::label('priority','Risk Priority') }}
         {{ Form::select('priority', ['1' => '1','2' => '2','3' => '3'], $riskPlan->priority, ['class' => 'form-control form-select' . ($errors->has('priority') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required']) }}
         {!! $errors->first('priority', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-4 mb-3">
-        {{ Form::label('level') }}
-        <select name="level" class="form-control form-select" required>
+        {{ Form::label('level','Risk Level') }}
+        <select name="level" class="form-control form-select" required id="riskLevel">
             <option value="">--Select--</option>
             <option value="9" class="text-danger" {{ "9" == $riskPlan->level ? 'selected' : ''}}>9</option>
             <option value="6" class="text-danger" {{ "6" == $riskPlan->level ? 'selected' : ''}}>6</option>
@@ -46,13 +46,13 @@
         {!! $errors->first('level', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-4 mb-3">
-        {{ Form::label('strategy') }}
-        <select name="strategy" class="form-control form-select" required>
+        {{ Form::label('strategy','Risk Strategy') }}
+        <select name="strategy" class="form-control form-select" required id="riskStrategy" readonly>
             <option value="">--Select--</option>
-            <option value="Avoid" class="text-danger" {{ "Avoid" == $riskPlan->strategy ? 'selected' : ''}}>Avoid</option>
-            <option value="Mitigate" class="text-danger" {{ "Mitigate" == $riskPlan->strategy ? 'selected' : ''}}>Mitigate</option>
-            <option value="Transfer" class="text-warning" {{ "Transfer" == $riskPlan->strategy ? 'selected' : ''}}>Transfer</option>
-            <option value="Accepted" class="text-success" {{ "Accepted" == $riskPlan->strategy ? 'selected' : ''}}>Accepted</option>
+            <option value="Avoid" data-class="text-danger" {{ "Avoid" == $riskPlan->strategy ? 'selected' : '' }}>Avoid</option>
+            <option value="Mitigate" data-class="text-danger" {{ "Mitigate" == $riskPlan->strategy ? 'selected' : '' }}>Mitigate</option>
+            <option value="Transfer" data-class="text-warning" {{ "Transfer" == $riskPlan->strategy ? 'selected' : '' }}>Transfer</option>
+            <option value="Accepted" data-class="text-success" {{ "Accepted" == $riskPlan->strategy ? 'selected' : '' }}>Accepted</option>
         </select>
         {!! $errors->first('strategy', '<div class="invalid-feedback">:message</div>') !!}
     </div>
@@ -79,7 +79,7 @@
         {!! $errors->first('responce', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-6 mb-3">
-        {{ Form::label('description') }}
+        {{ Form::label('description','Risk Description') }}
         {{ Form::textarea('description', $riskPlan->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Description','required','rows'=>'3']) }}
         {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
     </div>

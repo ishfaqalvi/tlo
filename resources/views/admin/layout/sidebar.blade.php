@@ -83,7 +83,7 @@
 <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('lessons*') ? 'active' : ''}}" href="{{ route('lessons.index') }}">
         <i class="ph-book"></i>
-        <span>Lessons</span>
+        <span>Lessons Learn Log</span>
     </a>
 </li>
 @endcan
@@ -91,7 +91,7 @@
 <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('risk-plans*') ? 'active' : ''}}" href="{{ route('risk-plans.index') }}">
         <i class="ph-bookmarks"></i>
-        <span>Risk Plans</span>
+        <span>Risk Management Plan</span>
     </a>
 </li>
 @endcan

@@ -25,12 +25,12 @@
         {!! $errors->first('situation', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-4 mb-3">
-        {{ Form::label('neded') }}
+        {{ Form::label('neded','Follow-up Needed') }}
         {{ Form::select('neded', ['Yes' => 'Yes', 'No' => 'No'], $lesson->neded, ['class' => 'form-control select' . ($errors->has('neded') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required']) }}
         {!! $errors->first('neded', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-12 mb-3">
-        {{ Form::label('comments') }}
+        {{ Form::label('comments','Recommendation & Comments') }}
         {{ Form::text('comments', $lesson->comments, ['class' => 'form-control' . ($errors->has('comments') ? ' is-invalid' : ''), 'placeholder' => 'Comments','required']) }}
         {!! $errors->first('comments', '<div class="invalid-feedback">:message</div>') !!}
     </div>

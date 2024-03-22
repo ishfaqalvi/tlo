@@ -1,14 +1,14 @@
 @extends('admin.layout.app')
 
 @section('title')
-    {{ $riskPlan->name ?? "Show Risk Plan" }}
+    {{ $riskPlan->name ?? "Show Risk Management Plan" }}
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Risk Plan Management</span>
+            Home - <span class="fw-normal">Risk Management Plan</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -28,7 +28,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">{{ __('Show') }} Risk Plan</h5>
+            <h5 class="mb-0">{{ __('Show') }} Risk Management Plan</h5>
         </div>
         <div class="card-body">
             <div class="form-group mb-3">
@@ -36,31 +36,31 @@
                 {{ $riskPlan->project->name }}
             </div>
             <div class="form-group mb-3">
-                <strong>Description:</strong>
+                <strong>Risk Description:</strong>
                 {{ $riskPlan->description }}
             </div>
             <div class="form-group mb-3">
                 <strong>Consequence:</strong>
                 {{ $riskPlan->consequence }}
             </div>
-            <div class="form-group mb-3">
+            <div class="form-group mb-3 {{ $riskPlan->probability_color }}">
                 <strong>Probability:</strong>
                 {{ $riskPlan->probability }}
             </div>
-            <div class="form-group mb-3">
+            <div class="form-group mb-3  {{ $riskPlan->impact_color }}">
                 <strong>Impact:</strong>
                 {{ $riskPlan->impact }}
             </div>
             <div class="form-group mb-3">
-                <strong>Priority:</strong>
+                <strong>Risk Priority:</strong>
                 {{ $riskPlan->priority }}
             </div>
-            <div class="form-group mb-3">
-                <strong>Level:</strong>
+            <div class="form-group mb-3  {{ $riskPlan->level_color }}">
+                <strong>Risk Level:</strong>
                 {{ $riskPlan->level }}
             </div>
-            <div class="form-group mb-3">
-                <strong>Strategy:</strong>
+            <div class="form-group mb-3  {{ $riskPlan->strategy_color }}">
+                <strong>Risk Strategy:</strong>
                 {{ $riskPlan->strategy }}
             </div>
             <div class="form-group mb-3">

@@ -53,6 +53,24 @@ class Lesson extends Model implements Auditable
     }
 
     /**
+     * Scope a query to filter.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $category
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilter($query, $request)
+    {
+        if (isset($request['project'])) {
+            $query->whereProjectId($request['project']);
+        }
+        if (isset($request['neded'])) {
+            $query->whereNeded($request['neded']);
+        }
+        return $query;
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function project()

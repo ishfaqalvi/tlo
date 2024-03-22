@@ -1,14 +1,14 @@
 @extends('admin.layout.app')
 
 @section('title')
-    {{ __('Update') }} Risk Plan
+    {{ __('Update') }} Risk Management Plan
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Risk Plan Management</span>
+            Home - <span class="fw-normal">Risk Management Plan</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -28,7 +28,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">{{ __('Edit ') }} Risk Plan </h5>
+            <h5 class="mb-0">{{ __('Edit ') }} Risk Management Plan</h5>
         </div>
         <div class="card-body">
             <form method="POST" action="{{ route('risk-plans.update', $riskPlan->id) }}" class="validate" role="form" enctype="multipart/form-data">
@@ -81,6 +81,30 @@
                 });
             }
         });
+        $('#riskLevel').change(function() {
+            var level = $(this).val();
+            var strategyMapping = {
+                '9': 'Avoid',
+                '6': 'Mitigate',
+                '3': 'Transfer',
+                '2': 'Accepted'
+            };
+            // Clear existing classes from the select
+            $('#riskStrategy').attr('class', 'form-control form-select');
+
+            // Set the value and apply the corresponding class
+            var strategyValue = strategyMapping[level] || '';
+            $('#riskStrategy').val(strategyValue).trigger('change');
+            
+            if (strategyValue) {
+                // Get the selected option
+                var selectedOption = $('#riskStrategy option:selected');
+                var optionClass = selectedOption.data('class');
+                
+                // Apply the class from the selected option
+                $('#riskStrategy').addClass(optionClass);
+            }
+        }).trigger('change');
     });
 </script>
 @endsection
