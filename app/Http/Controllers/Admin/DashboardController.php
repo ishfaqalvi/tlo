@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Project,ResultFramework,Indicator,Activity,Stakeholder,Site,Beneficiary,Feadback};
+use App\Models\{
+    Project,ResultFramework,Indicator,Activity,Stakeholder,Site,Beneficiary,Feadback,Lesson,RiskPlan
+};
 use App\Models\Catalog\{Category,Province,ComplaintType};
 
 class DashboardController extends Controller
@@ -207,6 +209,77 @@ class DashboardController extends Controller
         ];
 
         return view('admin.dashboard.feadbacks', compact('typeWise', 'sensitiveness', 'agreeness', 'statusWise'));
+    }
+
+    /**
+     * Handle the incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function lessons()
+    {
+        $projectWise = Project::withCount('lessons')->get();
+        $needBase = Lesson::get()->groupBy('neded')->map->count();
+        
+        return view('admin.dashboard.lessons', compact('projectWise','needBase'));
+    }
+
+    /**
+     * Handle the incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function riskPlans()
+    {
+        $projectWise = Project::withCount('riskPlans')->get();
+
+        $probability = RiskPlan::get()->groupBy('probability')->map->count();
+        $probabilityBase = [
+            $probability->get('High 3', 0), 
+            $probability->get('Medium 2', 0),
+            $probability->get('Low 1', 0)
+        ];
+
+        $impact = RiskPlan::get()->groupBy('impact')->map->count();
+        $impactBase = [
+            $impact->get('High 3', 0), 
+            $impact->get('Medium 2', 0),
+            $impact->get('Low 1', 0)
+        ];
+
+        $priority = RiskPlan::get()->groupBy('priority')->map->count();
+        $priorityBase = [
+            $priority->get('1', 0), 
+            $priority->get('2', 0),
+            $priority->get('3', 0)
+        ];
+
+        $level = RiskPlan::get()->groupBy('level')->map->count();
+        $levelBase = [
+            $level->get('9', 0), 
+            $level->get('6', 0),
+            $level->get('3', 0),
+            $level->get('2', 0)
+        ];
+
+        $strategy = RiskPlan::get()->groupBy('strategy')->map->count();
+        $strategyBase = [
+            $strategy->get('Avoid', 0), 
+            $strategy->get('Mitigate', 0),
+            $strategy->get('Transfer', 0),
+            $strategy->get('Accepted', 0)
+        ];
+
+        $status = RiskPlan::get()->groupBy('status')->map->count();
+        $statusBase = [
+            $status->get('Started', 0), 
+            $status->get('Open', 0),
+            $status->get('Closed', 0)
+        ];
+        // dd($probabilityBase);
+        return view('admin.dashboard.risk_plan', compact('projectWise','probabilityBase','impactBase','priorityBase','levelBase','strategyBase','statusBase'));
     }
 
 

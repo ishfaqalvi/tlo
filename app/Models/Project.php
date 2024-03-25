@@ -228,5 +228,21 @@ class Project extends Model implements Auditable
     public function beneficiaries()
     {
         return $this->hasMany('App\Models\Beneficiary', 'project_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function lessons()
+    {
+        return $this->hasMany('App\Models\Lesson', 'project_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function riskPlans()
+    {
+        return $this->hasMany('App\Models\RiskPlan', 'project_id', 'id');
     }   
 }

@@ -17,6 +17,8 @@ Route::group([
     Route::get('budget',             'budget'     )->name('budget'     );
     Route::get('indicators',         'indicators' )->name('indicators' );
     Route::get('feadbacks',          'feadbacks'  )->name('feadbacks'  );
+    Route::get('lessons',            'lessons'    )->name('lessons'    );
+    Route::get('risk-plans',         'riskPlans'  )->name('riskPlans'  );
     Route::post('set-project',       'setProject' )->name('setProject' );
     Route::post('set-activity',      'setActivity')->name('setActivity');
 });

@@ -29,4 +29,16 @@
         <i class="ph-chat-centered-text me-1"></i>
         Feadbacks
     </a>
+    <a 
+        href="{{ route('dashboard.lessons')}}"
+        class="d-flex align-items-center text-body p-2 {{ request()->routeIs('dashboard.lessons') ? 'active' : ''}}">
+        <i class="ph-book me-1"></i>
+        Lesson Learnt Log
+    </a>
+    <a 
+        href="{{ route('dashboard.riskPlans')}}"
+        class="d-flex align-items-center text-body p-2 {{ request()->routeIs('dashboard.riskPlans') ? 'active' : ''}}">
+        <i class="ph-bookmarks me-1"></i>
+        Risk Managment Plan
+    </a>
 </div>
