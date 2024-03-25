@@ -220,7 +220,8 @@ class DashboardController extends Controller
     public function lessons()
     {
         $projectWise = Project::withCount('lessons')->get();
-        $needBase = Lesson::get()->groupBy('neded')->map->count();
+        $need = Lesson::get()->groupBy('neded')->map->count();
+        $needBase = ['Yes' => $need->get('Yes', 0), 'No' => $need->get('No', 0)];
         
         return view('admin.dashboard.lessons', compact('projectWise','needBase'));
     }
