@@ -12,15 +12,16 @@ Route::group([
     'as'         => 'dashboard.',
     'controller' => DashboardController::class
 ], function () {
-    Route::get('/',                  'widgets'    )->name('widgets'    );
-    Route::get('projects',           'projects'   )->name('projects'   );
-    Route::get('budget',             'budget'     )->name('budget'     );
-    Route::get('indicators',         'indicators' )->name('indicators' );
-    Route::get('feadbacks',          'feadbacks'  )->name('feadbacks'  );
-    Route::get('lessons',            'lessons'    )->name('lessons'    );
-    Route::get('risk-plans',         'riskPlans'  )->name('riskPlans'  );
-    Route::post('set-project',       'setProject' )->name('setProject' );
-    Route::post('set-activity',      'setActivity')->name('setActivity');
+    Route::get('/',                  'widgets'      )->name('widgets'       );
+    Route::get('projects',           'projects'     )->name('projects'      );
+    Route::get('budget',             'budget'       )->name('budget'        );
+    Route::get('indicators',         'indicators'   )->name('indicators'    );
+    Route::get('feadbacks',          'feadbacks'    )->name('feadbacks'     );
+    Route::get('lessons',            'lessons'      )->name('lessons'       );
+    Route::get('beneficiaries',      'beneficiaries')->name('beneficiaries' );
+    Route::get('risk-plans',         'riskPlans'    )->name('riskPlans'     );
+    Route::post('set-project',       'setProject'   )->name('setProject'    );
+    Route::post('set-activity',      'setActivity'  )->name('setActivity'   );
 });
 
 /*

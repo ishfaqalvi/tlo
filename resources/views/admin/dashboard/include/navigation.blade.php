@@ -30,6 +30,12 @@
         Feadbacks
     </a>
     <a 
+        href="{{ route('dashboard.beneficiaries')}}"
+        class="d-flex align-items-center text-body p-2 {{ request()->routeIs('dashboard.beneficiaries') ? 'active' : ''}}">
+        <i class="ph-users-three me-1"></i>
+        Beneficiaries
+    </a>
+    <a 
         href="{{ route('dashboard.lessons')}}"
         class="d-flex align-items-center text-body p-2 {{ request()->routeIs('dashboard.lessons') ? 'active' : ''}}">
         <i class="ph-book me-1"></i>

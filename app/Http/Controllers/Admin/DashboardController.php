@@ -217,6 +217,22 @@ class DashboardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function beneficiaries()
+    {
+        $projectWise = Project::withCount('beneficiaries')->get();
+        
+        $gender = Beneficiary::get()->groupBy('gender')->map->count();
+        $genderBase = ['Male' => $gender->get('Male', 0), 'Female' => $gender->get('Female', 0)];
+        
+        return view('admin.dashboard.beneficiaries', compact('projectWise','genderBase'));
+    }
+
+    /**
+     * Handle the incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function lessons()
     {
         $projectWise = Project::withCount('lessons')->get();
