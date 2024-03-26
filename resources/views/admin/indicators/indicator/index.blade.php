@@ -68,7 +68,9 @@
                         <tr>
                             <td>{{ ++$key2 }}</td>
                             <td>
-                                {{ $indicator->name }}
+                                <a href="{{ route('indicators.edit',$indicator->id) }}">
+                                    {{ $indicator->name }}
+                                </a>
                                 @if($indicator->key_performance == 'Yes')
                                 <a href="#" class="badge bg-warning text-white rounded-pill p-1">
                                     KPI
