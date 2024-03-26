@@ -44,9 +44,6 @@
                 </div>
             </div>
         </div>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="notifications">
-            @include('admin.layout.notification')
-        </div>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="demo_config">
             @include('admin.layout.configuration')
         </div>

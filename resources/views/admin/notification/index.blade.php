@@ -31,19 +31,18 @@
             <tbody>
                 @foreach($notifications as  $key => $notification)
                     <tr>
-                        <td>{{ ++$key }}</td>
                         @if($notification->read_at)
                         <td>{{ ++$key }}</td>
-                        <td>{{ $notification->data['title'] }}</td>
+                        <td>{{ $notification->data['data']['name'] }}</td>
                         <td>{{ $notification->data['message'] }}</td>
                         <td>{{ $notification->created_at->diffForHumans()}}</td>
                         @else
                         <td><dt>{{ ++$key }}</dt></td>
-                        <td><dt>{{ $notification->data['title'] }}</dt></td>
+                        <td><dt>{{ $notification->data['data']['name'] }}</dt></td>
                         <td><dt>{{ $notification->data['message'] }}</dt></td>
                         <td><dt>{{ $notification->created_at->diffForHumans()}}</dt></td>
                         @endif
-                        <td class="text-center">@include('admin.audit.actions')</td>
+                        <td class="text-center">@include('admin.notification.actions')</td>
                     </tr>
                 @endforeach
             </tbody>
